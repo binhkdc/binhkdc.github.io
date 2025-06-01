@@ -1,0 +1,36 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="/css/style.min.css">
+    <title>Iu cáo rất nhiều :33</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+</head>
+<body>
+    <div class="love_background">
+        <div class="love_center love"></div>
+        <div class="love slide" style="left:150px;top:144px" ></div>
+        <div class="love" style="left:350px;top:120px;font-size: 23px;"></div>
+        <div class="love slide" style="left:500px;top:300px;font-size: 15px;"></div>
+        <div class="love slide" style="left:230;top:520px"></div>
+        <div class="love" style="left:347px;top:365px"></div>
+        <div class="love" style="left:750px;top:430px;font-size: 23px;"></div>
+        <div class="love slide" style="left:450px;top:680px;font-size: 34px;"></div>
+
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function(){
+        let text_love = `Chúc cáo iu 1/6 vui vẻ nha My Love <3`
+        function setText(text){
+            let love = $('.love');
+            for(let i=0 ;i < love.length;i++){
+                $(love[i]).text(text)
+            }
+        }
+        setText(text_love)
+    })
+
+</script>
+</html>

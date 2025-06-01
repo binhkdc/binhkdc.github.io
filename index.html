@@ -1,106 +1,60 @@
-<h1>Binhkdc dz nhất quả đất :333</h1>
-<!-- <a href="/login.html">login</a>
-<a href="/register.html">register</a>
-<a href="/download.html">download</a>
-<a href="/download.html">download</a> -->
-<style>
-    span{
-        color:red;
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="/css/style.min.css">
+    <title>1/6 của cáo iu :333</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container bg-pink">
+        <h1 class="title">Cáo có iu a không :>>></h1>
+        <div class="group_image">
+            <img src="/image/thinkcheem.jpg" alt="thac mac" class="cheem">
+            <img src="/image/cheemcry.jpg" alt="khoc loc" class="cheem"  style="display: none;">
+            <img src="/image/cheemangry.jpg" alt="tuc gian" class="cheem"  style="display: none;">
+            <img src="/image/cheemkill.jpg" alt="one shot" class="cheem" style="display: none;">
+        </div>
+        <div class="g_btn">
+            <a href="/love.html" class="btn btn-success py-2 px-3 yeu_em">
+                Có
+            </a>
+            <a class="btn btn-danger py-2 px-3 mac_ghet">
+                Hong :<
+            </a>
+        </div>
+
+    </div>
+
+</body>
+<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+<script>
+    let arrTitle = [
+        `Cáo có iu a không :>>>`,
+        `Hình như em chọn lộn rùi ;-;`,
+        `thì ra em chọn cách dùng bạo lực`,
+        `tôi cho em một cơ hội cuối cùng`
+    ]
+    let count = 0;
+    function active(number){
+        let cheem = $('.cheem');
+
+        for(let i=0;i<cheem.length;i++){
+            $(cheem).css('display',"none")
+        }
+        $(cheem[number]).css('display',"block");
+        $('.title').text(arrTitle[number]);
+
     }
-    li{
-        color:gray;
-        margin: 15px 0;
-        border-bottom:1px solid black
-    }
-</style>
-<ul>
-    <li><span>Câu 256: c</span><br>Do sự sinh trưởng không đều của hai phía cơ quan, trong khi đó các tế bào tại phía được tiếp xúc sinh trưởng nhanh hơn làm cho cơ quan uốn cong về phía tiếp xúc.</li>
-    <li><span>Câu 257: c</span><br>Rễ.</li>
-    <li><span>Câu 258: c</span><br>Sự đóng mở của lá cây trinh nữ, khí khổng đóng mở.</li>
-    <li><span>Câu 259: c</span><br>Hướng động dương (Sinh trưởng hướng tới nguồn kích thích) và hướng động âm (Sinh trưởng tránh xa nguồn kích thích).</li>
-    <li><span>Câu 260: c</span><br>Hướng đất, hướng nước, hướng hoá.</li>
-    <li><span>Câu 261: c</span><br>Chiếu sáng từ một hướng.</li>
-    <li><span>Câu 262: a</span><br>Ứng động đóng mở khí khổng.</li>
-    <li><span>Câu 263: d</span><br>Lá cây họ đậu xoè ra và khép lại, khí khổng đóng mở.</li>
-    <li><span>Câu 264: b</span><br>Hình thức phản ứng của cây trước tác nhân kích thích lúc có hướng, khi vô hướng.</li>
-    <li><span>Câu 266: b</span><br>Hướng nước, hướng hoá.</li>
-    <li><span>Câu 267: a</span><br>Mọc vống lên và có màu vàng úa.</li>
-    <li><span>Câu 268: d</span><br>Hoa mười giờ nở vào buổi sáng, khí khổng đóng mở.</li>
-    <li><span>Câu 269: c</span><br>Hình thức phản ứng của một bộ phận của cây trước tác nhân kích thích theo một hướng xác định.</li>
-    <li><span>Câu 270: b</span><br>Thân hướng sáng dương và hướng trọng lực âm, còn rễ hướng sáng âm và hướng trọng lực dương.</li>
-    <li><span>Câu 271: d</span><br>Hướng tiếp xúc.</li>
-    <li><span>Câu 272: c</span><br>Phản ứng của cơ thể thông qua hệ thần kinh trả lời lại các kích thích chỉ bên trong hoặc bên ngoài cơ thể.</li>
-    <li><span>Câu 273: b</span><br>Phản ứng lại các kích thích của môi trường sống đảm bảo cho cơ thể tồn tại và phát triển.</li>
-    <li><span>Câu 274: c</span><br>Bộ phận tiếp nhận kích thích à Bộ phận phân tích và tổng hợp thông tin à Bộ phận thực hiện phản ứng.</li>
-    <li><span>Câu 275: a</span><br>Hạch đầu, hạch thân.</li>
-    <li><span>Câu 276: d</span><br>Phản xạ là khái niệm rộng hơn cảm ứng.</li>
-    <li><span>Câu 277: d</span><br>Tiêu phí ít năng lượng.</li>
-    <li><span>Câu 278: a</span><br>Thụ thể hoặc cơ quan thụ cảm à Hệ thần kinh à Cơ, tuyến.</li>
-    <li><span>Câu 279: b</span><br>Co toàn bộ cơ thể.</li>
-    <li><span>Câu 280: a</span><br>Các tế bào thần kinh tập trung thành các hạch thần kinh và được nối với nhau tạo thành chuỗi hạch nằm dọc theo chiều dài cơ thể.</li>
-    <li><span>Câu 281: a</span><br>Các tế bào cảm giác tiếp nhận kích thích à Chuỗi hạch phân tích và tổng hợp thông tin à Các cơ và nội quan thực hiện phản ứng. 1</li>
-    <li><span>Câu 282: d</span><br>Thông qua phản xạ.</li>
-    <li><span>Câu 283: d</span><br>Phản ứng toàn thân, tiêu tốn nhiều năng lượng so với thần kinh dạng lưới.</li>
-    <li><span>Câu 284: a</span><br>Tế bào cảm giác à Mạng lưới thần kinh à Tế bào mô bì cơ.</li>
-    <li><span>Câu 285: b</span><br>Hạch não.</li>
-    <li><span>Câu 286: d</span><br>Hạch đầu, hạch ngực, hạch bụng.</li>
-    <li><span>Câu 287: a</span><br>Hạch não.</li>
-    <li><span>Câu 288: a</span><br>Các tế bào thần kinh rải rác dọc theo khoang cơ thể và liên hệ với nhau qua sợi thần kinh tạo thành mạng lưới tế bào thần kinh.</li>
-    <li><span>Câu 289: d</span><br>Diễn ra nhanh hơn.</li>
-    <li><span>Câu 290: d</span><br>Phản xạ có điều kiện, trong đó có sự tham gia của một số lượng lớn tế bào thần kinh trong đó có các tế bào vỏ não.</li>
-    <li><span>Câu 291: b</span><br>Bán cầu đại não.</li>
-    <li><span>Câu 292: a</span><br>Cá, lưỡng cư, bò sát, chim, thú.</li>
-    <li><span>Câu 293: d</span><br>Là phản xạ có điều kiện.</li>
-    <li><span>Câu 294: b</span><br>Não và tuỷ sống.</li>
-    <li><span>Câu 295: c</span><br>Bán cầu đại não.</li>
-    <li><span>Câu 296: c</span><br>Bán cầu đại não, não trung gian, não giữa, tiểu não và hành não.</li>
-    <li><span>Câu 297: c</span><br>Phản xạ không điều kiện, thực hiện trên cung phản xạ được tạo bởi một số ít tế bào thần kinh và thường do tuỷ sống điều khiển.</li>
-    <li><span>Câu 298: c</span><br>Có số lượng không hạn chế.</li>
-    <li><span>Câu 299: c</span><br>Có số lượng hạn chế.</li>
-    <li><span>Câu 300: d</span><br>Hệ thần kinh vận động điều khiển những hoạt động theo ý muốn và hệ thần kinh sinh dưỡng điều khiển những hoạt động không theo ý muốn.</li>
-    <li><span>Câu 301: c</span><br>Thụ quan đau ở da à Sợi cảm giác của dây thần kinh tuỷ à Tuỷ sống à Sợi vận động của dây thần kinh tuỷ à Các cơ ngón tay</li>
-    <li><span>Câu 302: c</span><br>Sự phân bố ion không đều, sự di chuyển của ion theo hướng đi ra và tính thẩm có chọn lọc của màng tế bào với ion.</li>
-    <li><span>Câu 303: d</span><br>Tiến hoá theo hướng tăng lượng phản xạ nên cần nhiều thời gian để phản ứng.</li>
-    <li><span>Câu 304: d</span><br>Do K+ mang điện tích dương khi ra ngoài màng tạo ra nồng độ của nó cao hơn ở phía mặt trong của màng.</li>
-    <li><span>Câu 305: a</span><br>Do cổng K+ mở và nồng độ bên trong màng của K+ cao.</li>
-    <li><span>Câu 306: c</span><br>Sự chênh lệch điện thế giữa hai bên màng tế bào khi tế bào không bị kích thích, phía trong màng mang điện âm và ngoài màng mang điện dương.</li>
-    <li><span>Câu 307: c</span><br>Ở trong tế bào, K+ có nồng độ cao hơn và Na+ có nồng độ thấp hơn so với bên ngoài tế bào.</li>
-    <li><span>Câu 308: a</span><br>Vận chuyển K+ từ trong ra ngoài màng giúp duy trì nồng độ K+ giáp màng ngoài tế bào luôn cao và tiêu tốn năng lượng.</li>
-    <li><span>Câu 309: a</span><br>Vì sự thay đổi tính thấm của màng chỉ xảy ra tại các eo Ranvie.</li>
-    <li><span>Câu 310: a</span><br>Sự biến đổi điện thế nghỉ ở màng tế bào từ phân cực sang mất phân cực, đảo cực và tái phân cực.</li>
-    <li><span>Câu 311: d</span><br>Màng sau xinap.</li>
-    <li><span>Câu 312: b</span><br>Do K+ đi ra ồ ạt, làm mặt ngoài màng tế bào tích điện dương, còn mặt trong tích điện âm.</li>
-    <li><span>Câu 313: c</span><br>Dẫn truyền theo lối “nhảy cóc”, nhanh và ít tiêu tốn năng lượng.</li>
-    <li><span>Câu 314: b</span><br>Màng trước xinap à Chuỳ xinap à Khe xinap à Màng sau xinap.</li>
-    <li><span>Câu 315: b</span><br>Màng trước xinap à Chuỳ xinap à Khe xinap à Màng sau xinap.</li>
-    <li><span>Câu 316: b</span><br>Chuỳ xinap.</li>
-    <li><span>Câu 317: a</span><br>Axêtincôlin và đôpamin.</li>
-    <li><span>Câu 318: b</span><br>Do Na+ đi vào làm trung hoà điện tích âm trong màng.</li>
-    <li><span>Câu 319: d</span><br>Diện tiếp xúc chỉ giữa các tế bào thần kinh với nhau hay với các tế bào khác (tế bào cơ, tế bào tuyến...).</li>
-    <li><span>Câu 320: a</span><br>Xung thần kinh lan truyền liên tục từ vùng này sang vùng khác do mất phân cực đến tái phân cực rồi đảo cực.</li>
-    <li><span>Câu 321: b</span><br>Do K+ đi vào còn dư thừa, làm mặt trong màng tế bào tích điện dương, còn mặt ngoài tích điện âm.</li>
-    <li><span>Câu 322: d</span><br>Nếu kích thích tại điểm giữa sợi trục thì lan truyền chỉ theo một hướng.</li>
-    <li><span>Câu 323: c</span><br>Xung thần kinh lan truyền tiếp từ màng sau đến màng trước.</li>
-    <li><span>Câu 324: b</span><br>Sự xuất hiện điện thế hoạt động.</li>
-    <li><span>Câu 325: d</span><br>Xung thần kinh không chạy trên sợi trục mà chỉ kích thích vùng màng làm thay đổi tính thấm.</li>
-    <li><span>Câu 326: d</span><br>Vì hình thành mối liên hệ mới giữa các nơron.</li>
-    <li><span>Câu 327: a</span><br>Có sự thay đổi linh hoạt trong đời sống cá thể.</li>
-    <li><span>Câu 328: c</span><br>Bằng tần số xung, vị trí và số lượng nơron bị hưng phấn.</li>
-    <li><span>Câu 329: a</span><br>Sự tạo lập một chuỗi các phản xạ có điều kiện, trong đó hình thành các mối liên hệ mới giữa các nơron bền vững.</li>
-    <li><span>Câu 330: d</span><br>Tập tính nhất thời.</li>
-    <li><span>Câu 331: c</span><br>Tập tính động vật không trả lời khi kích thích lặp đi lặp lại nhiều lần mà không gây nguy hiểm gì.</li>
-    <li><span>Câu 332: b</span><br>Hình thức học tập mà con vật mới sinh bám theo vật thể chuyển động mà nó nhìn thấy đầu tiên và giảm dần qua những ngày sau.</li>
-    <li><span>Câu 333: a</span><br>Số tế bào thần kinh không nhiều và tuổi thọ thường ngắn.</li>
-    <li><span>Câu 334: c</span><br>Loại tập tính được hình thành trong quá trình sống của cá thể, thông qua học tập và rút kinh nghiệm.</li>
-    <li><span>Câu 335: b</span><br>Không phải bất kì kích thích nào cũng là xuất hiện tập tính.</li>
-    <li><span>Câu 336: a</span><br>Một số phản ứng trả lời các kích thích của môi trường (bên trong hoặc bên ngoài cơ thể nhờ đó mà động vật thích nghi với môi trường sống, tồn tại và phát triển.</li>
-    <li><span>Câu 337: a</span><br>Số lượng các xinap trong cung phản xạ tăng lên.</li>
-    <li><span>Câu 338: a</span><br>Hình thành mối liên hệ mới trong thần kinh trung ương dưới tác động của các kích thích đồng thời.</li>
-    <li><span>Câu 339: b</span><br>Hầu hết các tập tính ở động vật có trình độ tổ chức thấp là tập tính hỗn hợp. Động vật bậc cao có nhiều tập tính học được.</li>
-    <li><span>Câu 340: d</span><br>Axêtincôlin tái chế được chứa trong các bóng xinap.</li>
-    <li><span>Câu 341: a</span><br>Kiểu liên kết giữa các hành vi và các kích thích sau đó động vật chủ động lặp lại các hành vi này.</li>
-    <li><span>Câu 342: a</span><br>Những hoạt động phức tạp của động vật, sinh ra đã có, được di truyền từ bố mẹ, đặc trưng cho loài.</li>
-    <li><span>Câu 343: a</span><br>Vì sự chuyển giao xung thần kinh qua xináp nhờ chất trung gian hoá học chỉ theo một chiều.</li>
-    <li><span>Câu 344: c</span><br>Ve kêu vào mùa hè, ếch đực kêu vào mùa sinh sản.</li>
-    <li><span>Câu 345: a</span><br>Những điều học được một cách không có ý thức mà sau đó động vật rút kinh nghiệm để giải quyết vấn đề tương tự.</li>
-  </ul>
+    active(0);
+
+    $('.mac_ghet').click(function(){
+        count ++;
+        if(count == 4){
+            $(this).attr("href", "/love.html");
+        }
+        active(count);
+        
+    })
+</script>
+</html>
