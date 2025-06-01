@@ -48,6 +48,9 @@ body{
 .slide{
     animation: slide 6000ms linear infinite;
 }
+.slide1{
+    animation: slide1 6000ms linear infinite;
+}
 
 .love_center{
     opacity: 1;
@@ -75,7 +78,18 @@ body{
     0%{
        left: 0;
     }
-    100%{
+    50%{
        left: 100%;
+    }
+    100%{
+        left: 0;
+    }
+}
+@keyframes slide {
+    0%{
+       left: 200px;
+    }
+    100%{
+       left: 500px;
     }
 }

@@ -1,0 +1,62 @@
+body {
+    margin: 0;
+    overflow: hidden; /* Ẩn phần tử vượt ra ngoài màn hình */
+    background-color: #000; /* Nền đen */
+    font-family: 'Press Start 2P', cursive; /* Một font chữ pixelart phổ biến, bạn có thể thay thế */
+    /* Để sử dụng font này, bạn có thể import từ Google Fonts:
+       @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+       Hoặc tìm font tương tự */
+}
+
+.container {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+}
+
+.message-item {
+    position: absolute;
+    color: #FF69B4; /* Màu hồng neon */
+    font-size: 16px; /* Kích thước font có thể điều chỉnh */
+    white-space: nowrap; /* Ngăn chặn ngắt dòng */
+    animation: floatAndFade 10s infinite linear; /* Hiệu ứng nổi và mờ dần */
+    opacity: 0; /* Bắt đầu với độ mờ bằng 0 */
+    text-shadow: 0 0 5px #FF69B4, 0 0 10px #FF69B4, 0 0 15px #FF69B4; /* Hiệu ứng neon */
+}
+
+.icon-group {
+    position: absolute;
+    display: flex;
+    gap: 5px; /* Khoảng cách giữa các icon */
+    animation: floatAndFade 10s infinite linear;
+    opacity: 0;
+}
+
+.icon {
+    width: 24px; /* Kích thước icon, điều chỉnh theo hình ảnh thực tế */
+    height: 24px;
+    /* Nếu là hình ảnh, dùng background-image hoặc img tag */
+    /* background-color: yellow; */ /* Ví dụ, bạn sẽ thay bằng icon mèo/cáo */
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyIDJDNi40OCAyIDIgNi40OCAyIDEyQzIgMTcuNTIgNi40OCAyMiAxMiAyMkMxNy41MiAyMiAyMiAxNy41MiAyMiAxMkMyMiA2LjQ4IDE3LjUyIDIgMTIgMlpNNyAxMUg1VjEzSDdWMjBIMTdWMTNIMTVWMTEaTTkgMTFIMTVWMjBILDlWMTNaIiBmaWxsPSJ5ZWxsb3ciLz4KPC9zdmc+'); /* Đây là SVG ví dụ cho một hình tròn màu vàng, bạn cần thay bằng icon mèo/cáo */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+
+@keyframes floatAndFade {
+    0% {
+        transform: translateY(100vh) translateX(calc(var(--rand-x) * 100vw));
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100px) translateX(calc(var(--rand-x) * 100vw));
+        opacity: 0;
+    }
+}
