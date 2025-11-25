@@ -1,0 +1,16 @@
+node_modules
+package-lock.json
+uploads
+uploads_games
+uploads_games.zip
+uploads.zip
+logs
+
+yarn.lock
+.yarn
+.pnp.cjs
+.pnp.loader.mjs
+
+.DS_Store
+**/.DS_Store
+config
