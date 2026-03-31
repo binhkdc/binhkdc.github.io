@@ -1,0 +1,1332 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Samsung Galaxy S26 Ultra – Điện Thoại AI Thế Hệ Mới</title>
+  <meta name="description" content="Samsung Galaxy S26 Ultra – Camera 200MP F1.4, Galaxy AI, Snapdragon 8 Elite Gen 5, Privacy Display chống nhìn trộm. Giá từ 42.990.000đ." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─────────────────────────────────────────────
+       RESET & BASE
+    ───────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black:   #0a0a0a;
+      --dark:    #111111;
+      --card:    #1a1a1a;
+      --border:  rgba(255,255,255,.08);
+      --text:    #f0f0f0;
+      --muted:   #888;
+      --accent:  #3d8ef8;
+      --grad1:   linear-gradient(135deg, #1a1a2e 0%, #16213e 40%, #0f3460 100%);
+      --grad2:   linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+      --cobalt:  #6a5acd;
+      --sky:     #87ceeb;
+      --radius:  18px;
+      --fs-xl:   clamp(2.4rem, 6vw, 5.2rem);
+      --fs-lg:   clamp(1.6rem, 3.5vw, 2.8rem);
+      --fs-md:   clamp(1.1rem, 2vw, 1.35rem);
+      --fs-sm:   0.9rem;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      background: var(--black);
+      color: var(--text);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+
+    /* ─────────────────────────────────────────────
+       UTILITY
+    ───────────────────────────────────────────── */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: .75rem; font-weight: 600; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--accent);
+      padding: 4px 12px; border-radius: 999px;
+      border: 1px solid rgba(61,142,248,.3);
+      background: rgba(61,142,248,.07);
+    }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      gap: 8px; font-family: inherit; font-size: 1rem; font-weight: 600;
+      border: none; border-radius: 999px; cursor: pointer;
+      transition: transform .2s, box-shadow .2s, opacity .2s;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary {
+      background: var(--accent); color: #fff;
+      padding: 14px 36px;
+      box-shadow: 0 6px 30px rgba(61,142,248,.4);
+    }
+    .btn-primary:hover { box-shadow: 0 10px 40px rgba(61,142,248,.55); }
+    .btn-outline {
+      background: transparent; color: var(--text);
+      padding: 13px 34px; border: 1.5px solid rgba(255,255,255,.25);
+    }
+    .btn-outline:hover { border-color: rgba(255,255,255,.6); }
+    .section-label {
+      font-size: .78rem; font-weight: 700; letter-spacing: .15em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: var(--fs-lg); font-weight: 700; line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .section-sub {
+      font-size: var(--fs-md); color: var(--muted); max-width: 560px;
+      line-height: 1.7;
+    }
+
+    /* scroll reveal */
+    .reveal { opacity: 0; transform: translateY(40px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-left { opacity: 0; transform: translateX(-40px); transition: opacity .8s ease, transform .8s ease; }
+    .reveal-left.visible { opacity: 1; transform: none; }
+    .reveal-right { opacity: 0; transform: translateX(40px); transition: opacity .8s ease, transform .8s ease; }
+    .reveal-right.visible { opacity: 1; transform: none; }
+    .delay-1 { transition-delay: .1s; }
+    .delay-2 { transition-delay: .2s; }
+    .delay-3 { transition-delay: .3s; }
+    .delay-4 { transition-delay: .4s; }
+    .delay-5 { transition-delay: .5s; }
+
+    /* ─────────────────────────────────────────────
+       NAVBAR
+    ───────────────────────────────────────────── */
+    .navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 16px 24px;
+      backdrop-filter: blur(20px) saturate(1.4);
+      -webkit-backdrop-filter: blur(20px) saturate(1.4);
+      background: rgba(10,10,10,.7);
+      border-bottom: 1px solid var(--border);
+      transition: background .3s;
+    }
+    .navbar__inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .navbar__logo {
+      font-size: 1.15rem; font-weight: 700; letter-spacing: -.02em;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .navbar__logo svg { width: 28px; height: 28px; fill: var(--text); }
+    .navbar__links { display: flex; gap: 32px; }
+    .navbar__links a {
+      font-size: .9rem; font-weight: 500; color: var(--muted);
+      transition: color .2s;
+    }
+    .navbar__links a:hover { color: var(--text); }
+    .navbar__cta {
+      background: var(--accent); color: #fff;
+      padding: 10px 22px; border-radius: 999px;
+      font-size: .9rem; font-weight: 600;
+      transition: opacity .2s, transform .2s;
+    }
+    .navbar__cta:hover { opacity: .88; transform: translateY(-1px); }
+    @media (max-width: 768px) {
+      .navbar__links { display: none; }
+    }
+
+    /* ─────────────────────────────────────────────
+       HERO
+    ───────────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      background: var(--grad1);
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 120px 24px 80px;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 70% 50%, rgba(61,142,248,.18), transparent);
+      pointer-events: none;
+    }
+    /* animated blur blobs */
+    .hero__blob {
+      position: absolute; border-radius: 50%; filter: blur(80px);
+      animation: float 8s ease-in-out infinite; pointer-events: none;
+    }
+    .hero__blob--1 {
+      width: 500px; height: 500px; top: -100px; right: -80px;
+      background: rgba(106,90,205,.25); animation-delay: 0s;
+    }
+    .hero__blob--2 {
+      width: 350px; height: 350px; bottom: -50px; left: 10%;
+      background: rgba(61,142,248,.18); animation-delay: 3s;
+    }
+    @keyframes float {
+      0%,100% { transform: translateY(0) scale(1); }
+      50%      { transform: translateY(-30px) scale(1.05); }
+    }
+    .hero__inner {
+      max-width: 1200px; margin: 0 auto; width: 100%;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+      position: relative; z-index: 1;
+    }
+    .hero__eyebrow {
+      display: flex; align-items: center; gap: 10px; margin-bottom: 20px;
+    }
+    .hero__badge {
+      font-size: .72rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.12);
+      padding: 5px 12px; border-radius: 999px; color: #ddd;
+    }
+    .hero__title {
+      font-size: var(--fs-xl); font-weight: 800;
+      line-height: 1.08; letter-spacing: -.03em;
+      margin-bottom: 16px;
+    }
+    .hero__title span {
+      background: linear-gradient(135deg, #74aaff, #a78bfa);
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .hero__sub {
+      font-size: var(--fs-md); color: rgba(255,255,255,.65);
+      line-height: 1.7; margin-bottom: 36px; max-width: 480px;
+    }
+    .hero__actions { display: flex; gap: 14px; flex-wrap: wrap; }
+    .hero__price-tag {
+      margin-top: 32px; display: flex; align-items: center; gap: 8px;
+    }
+    .hero__price {
+      font-size: 1.5rem; font-weight: 700; color: #fff;
+    }
+    .hero__price-label {
+      font-size: .82rem; color: var(--muted); line-height: 1.3;
+    }
+    .hero__image-wrap {
+      display: flex; justify-content: center; align-items: center;
+      position: relative;
+    }
+    .hero__image-wrap::before {
+      content: '';
+      position: absolute; width: 380px; height: 380px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(106,90,205,.35) 0%, transparent 70%);
+      animation: pulse 4s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%,100%{ transform: scale(1); opacity: .8; }
+      50%     { transform: scale(1.1); opacity: 1; }
+    }
+    .hero__phone {
+      width: 100%; max-width: 380px;
+      filter: drop-shadow(0 30px 80px rgba(0,0,0,.6)) drop-shadow(0 0 60px rgba(61,142,248,.3));
+      animation: levitate 6s ease-in-out infinite;
+    }
+    @keyframes levitate {
+      0%,100%{ transform: translateY(0); }
+      50%     { transform: translateY(-18px); }
+    }
+    .hero__review {
+      position: absolute; bottom: 24px; left: 24px;
+      background: rgba(255,255,255,.07); backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,.1);
+      padding: 10px 16px; border-radius: 12px;
+      font-size: .82rem; color: rgba(255,255,255,.75);
+    }
+    .hero__review strong { color: #fff; }
+    @media (max-width: 900px) {
+      .hero__inner { grid-template-columns: 1fr; text-align: center; gap: 40px; }
+      .hero__sub { margin-inline: auto; }
+      .hero__actions { justify-content: center; }
+      .hero__price-tag { justify-content: center; }
+      .hero__image-wrap { order: -1; }
+      .hero__phone { max-width: 260px; }
+    }
+
+    /* ─────────────────────────────────────────────
+       FEATURE STRIP
+    ───────────────────────────────────────────── */
+    .strip {
+      background: var(--dark);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 0;
+    }
+    .strip__inner {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(4, 1fr);
+    }
+    .strip__item {
+      padding: 28px 24px;
+      border-right: 1px solid var(--border);
+      display: flex; flex-direction: column; align-items: center;
+      text-align: center; gap: 10px;
+      transition: background .2s;
+    }
+    .strip__item:last-child { border-right: none; }
+    .strip__item:hover { background: rgba(255,255,255,.03); }
+    .strip__icon {
+      width: 44px; height: 44px; border-radius: 12px;
+      display: grid; place-items: center;
+      background: rgba(61,142,248,.12);
+    }
+    .strip__icon svg { width: 22px; height: 22px; fill: var(--accent); }
+    .strip__val { font-size: 1.25rem; font-weight: 700; }
+    .strip__key { font-size: .78rem; color: var(--muted); line-height: 1.3; }
+    @media (max-width: 600px) {
+      .strip__inner { grid-template-columns: repeat(2,1fr); }
+      .strip__item:nth-child(2) { border-right: none; }
+    }
+
+    /* ─────────────────────────────────────────────
+       DESIGN SECTION
+    ───────────────────────────────────────────── */
+    .section { padding: 100px 24px; }
+    .section--alt { background: var(--dark); }
+    .design { overflow: hidden; }
+    .design__inner {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+    }
+    .colors-row {
+      display: flex; gap: 16px; flex-wrap: wrap; margin-top: 28px;
+    }
+    .color-chip {
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      cursor: pointer; transition: transform .2s;
+    }
+    .color-chip:hover { transform: translateY(-4px); }
+    .color-chip__circle {
+      width: 44px; height: 44px; border-radius: 50%;
+      border: 2.5px solid rgba(255,255,255,.15);
+      box-shadow: 0 4px 16px rgba(0,0,0,.4);
+      transition: border-color .2s;
+    }
+    .color-chip:hover .color-chip__circle { border-color: rgba(255,255,255,.5); }
+    .color-chip__name { font-size: .72rem; color: var(--muted); }
+    .design__specs {
+      margin-top: 36px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+    .design__spec {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 14px; padding: 18px 20px;
+    }
+    .design__spec-val { font-size: 1.4rem; font-weight: 700; }
+    .design__spec-key { font-size: .78rem; color: var(--muted); margin-top: 2px; }
+    .design__phone-grid {
+      display: flex; justify-content: center; gap: 20px; align-items: flex-end;
+    }
+    .design__phone-img {
+      width: 140px; border-radius: 20px;
+      filter: drop-shadow(0 16px 40px rgba(0,0,0,.5));
+      transition: transform .3s;
+    }
+    .design__phone-img:hover { transform: translateY(-8px) scale(1.04); }
+    .design__phone-img--main { width: 180px; }
+    @media (max-width: 900px) {
+      .design__inner { grid-template-columns: 1fr; }
+      .design__phone-grid { order: -1; }
+    }
+
+    /* ─────────────────────────────────────────────
+       CAMERA SECTION
+    ───────────────────────────────────────────── */
+    .camera {
+      background: var(--grad2); position: relative; overflow: hidden;
+    }
+    .camera::before {
+      content: '';
+      position: absolute; width: 600px; height: 600px;
+      border-radius: 50%; top: -200px; right: -200px;
+      background: radial-gradient(circle, rgba(61,142,248,.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .camera__inner {
+      max-width: 1200px; margin: 0 auto; position: relative; z-index: 1;
+    }
+    .camera__header { text-align: center; margin-bottom: 64px; }
+    .camera__header .section-sub { margin-inline: auto; }
+    .camera__grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+      margin-bottom: 60px;
+    }
+    .camera__card {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: var(--radius); padding: 32px 28px;
+      transition: background .3s, transform .3s, border-color .3s;
+    }
+    .camera__card:hover {
+      background: rgba(255,255,255,.07);
+      transform: translateY(-6px);
+      border-color: rgba(61,142,248,.3);
+    }
+    .camera__card-icon {
+      width: 52px; height: 52px; border-radius: 14px;
+      display: grid; place-items: center;
+      background: rgba(61,142,248,.15); margin-bottom: 20px;
+    }
+    .camera__card-icon svg { width: 26px; height: 26px; fill: #74aaff; }
+    .camera__card-mp { font-size: 2rem; font-weight: 800; margin-bottom: 4px; }
+    .camera__card-type { font-size: .85rem; color: var(--muted); margin-bottom: 12px; }
+    .camera__card-aper {
+      display: inline-block; font-size: .9rem; font-weight: 700; color: var(--accent);
+      background: rgba(61,142,248,.1); padding: 4px 12px; border-radius: 999px;
+    }
+    .camera__card-desc { margin-top: 12px; font-size: .85rem; color: var(--muted); line-height: 1.6; }
+    .zoom-bar {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: var(--radius); padding: 40px 40px;
+      display: flex; align-items: center; justify-content: space-between; gap: 20px;
+      flex-wrap: wrap;
+    }
+    .zoom-bar__text { max-width: 380px; }
+    .zoom-steps {
+      display: flex; align-items: center; gap: 0;
+    }
+    .zoom-step {
+      text-align: center; padding: 10px 18px;
+      position: relative;
+    }
+    .zoom-step::after {
+      content: '→'; position: absolute; right: -10px; top: 50%;
+      transform: translateY(-50%); color: var(--muted); font-size: .8rem;
+    }
+    .zoom-step:last-child::after { display: none; }
+    .zoom-step__val { font-size: 1.4rem; font-weight: 800; color: var(--accent); }
+    .zoom-step__key { font-size: .72rem; color: var(--muted); }
+    @media (max-width: 900px) {
+      .camera__grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .camera__grid { grid-template-columns: 1fr; }
+      .zoom-bar { flex-direction: column; text-align: center; padding: 28px 20px; }
+    }
+
+    /* ─────────────────────────────────────────────
+       AI SECTION
+    ───────────────────────────────────────────── */
+    .ai__inner {
+      max-width: 1200px; margin: 0 auto;
+    }
+    .ai__header {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+      align-items: center; margin-bottom: 64px;
+    }
+    .ai__logo {
+      font-size: 3rem; font-weight: 800; letter-spacing: -.04em;
+      background: linear-gradient(135deg, #74aaff, #c084fc);
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .ai__features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .ai__feat {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 28px 24px;
+      transition: border-color .3s, transform .3s;
+    }
+    .ai__feat:hover { border-color: rgba(168,139,250,.4); transform: translateY(-4px); }
+    .ai__feat-num {
+      width: 40px; height: 40px; border-radius: 10px;
+      display: grid; place-items: center;
+      background: rgba(168,139,250,.12);
+      font-size: .85rem; font-weight: 700; color: #c084fc;
+      margin-bottom: 16px;
+    }
+    .ai__feat h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+    .ai__feat p { font-size: .85rem; color: var(--muted); line-height: 1.6; }
+    @media (max-width: 900px) {
+      .ai__header { grid-template-columns: 1fr; gap: 24px; }
+      .ai__features { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .ai__features { grid-template-columns: 1fr; }
+    }
+
+    /* ─────────────────────────────────────────────
+       PERFORMANCE SECTION
+    ───────────────────────────────────────────── */
+    .perf { background: var(--dark); }
+    .perf__inner {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 5fr 4fr; gap: 80px; align-items: start;
+    }
+    .perf__chips {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 28px;
+    }
+    .perf__chip {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 14px; padding: 22px 20px;
+      display: flex; align-items: flex-start; gap: 14px;
+    }
+    .perf__chip-bar {
+      flex-shrink: 0; width: 4px; height: 48px; border-radius: 4px;
+      background: var(--grad1);
+    }
+    .perf__chip-bar--blue  { background: linear-gradient(to bottom, #3d8ef8, #74aaff); }
+    .perf__chip-bar--green { background: linear-gradient(to bottom, #22c55e, #4ade80); }
+    .perf__chip-bar--purp  { background: linear-gradient(to bottom, #a855f7, #c084fc); }
+    .perf__chip-bar--orange{ background: linear-gradient(to bottom, #f97316, #fb923c); }
+    .perf__chip-pct {
+      font-size: 1.5rem; font-weight: 800; line-height: 1;
+    }
+    .perf__chip-label { font-size: .78rem; color: var(--muted); margin-top: 4px; }
+    .perf__battery {
+      background: linear-gradient(135deg, rgba(34,197,94,.08), rgba(34,197,94,.03));
+      border: 1px solid rgba(34,197,94,.15);
+      border-radius: var(--radius); padding: 36px 32px; text-align: center;
+    }
+    .perf__battery-ring {
+      width: 140px; height: 140px; margin: 0 auto 24px;
+      border-radius: 50%;
+      background: conic-gradient(#22c55e calc(75 * 1%), rgba(255,255,255,.06) 0);
+      display: grid; place-items: center; position: relative;
+    }
+    .perf__battery-ring::before {
+      content: '';
+      position: absolute; width: 108px; height: 108px; border-radius: 50%;
+      background: var(--dark);
+    }
+    .perf__battery-ring-text {
+      position: relative; z-index: 1; text-align: center;
+    }
+    .perf__battery-ring-text .val { font-size: 1.5rem; font-weight: 800; color: #22c55e; }
+    .perf__battery-ring-text .sub { font-size: .7rem; color: var(--muted); }
+    .perf__battery h3 { font-size: 1.4rem; font-weight: 700; margin-bottom: 8px; }
+    .perf__battery p { font-size: .85rem; color: var(--muted); line-height: 1.6; margin-bottom: 20px; }
+    .perf__battery-stats { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; }
+    .perf__stat { text-align: center; }
+    .perf__stat-val { font-size: 1.2rem; font-weight: 700; }
+    .perf__stat-key { font-size: .75rem; color: var(--muted); }
+    @media (max-width: 900px) {
+      .perf__inner { grid-template-columns: 1fr; gap: 40px; }
+    }
+    @media (max-width: 600px) {
+      .perf__chips { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* ─────────────────────────────────────────────
+       SPECS TABLE
+    ───────────────────────────────────────────── */
+    .specs { overflow: hidden; }
+    .specs__inner {
+      max-width: 1200px; margin: 0 auto;
+    }
+    .specs__header { text-align: center; margin-bottom: 48px; }
+    .specs__table {
+      width: 100%; border-collapse: collapse;
+      background: var(--card); border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .specs__table tr:not(:last-child) { border-bottom: 1px solid var(--border); }
+    .specs__table tr:hover td { background: rgba(255,255,255,.02); }
+    .specs__table td {
+      padding: 16px 24px; font-size: .9rem;
+      transition: background .2s;
+    }
+    .specs__table td:first-child {
+      color: var(--muted); font-weight: 500; width: 35%;
+    }
+    .specs__table td:last-child { font-weight: 400; }
+    .specs__table thead th {
+      background: rgba(61,142,248,.1); padding: 14px 24px;
+      font-size: .78rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--accent);
+      text-align: left;
+    }
+
+    /* ─────────────────────────────────────────────
+       PRIVACY DISPLAY
+    ───────────────────────────────────────────── */
+    .privacy {
+      background: var(--dark);
+    }
+    .privacy__inner {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+    }
+    .privacy__visual {
+      position: relative; display: flex; justify-content: center;
+    }
+    .privacy__screen {
+      width: 220px; height: 440px; background: #0d0d0d;
+      border-radius: 30px; border: 2px solid rgba(255,255,255,.12);
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden; position: relative;
+      box-shadow: 0 30px 80px rgba(0,0,0,.5), 0 0 0 1px rgba(255,255,255,.06);
+    }
+    .privacy__overlay {
+      position: absolute; inset: 0;
+      background: repeating-linear-gradient(
+        0deg, transparent, transparent 3px, rgba(0,0,0,.6) 3px, rgba(0,0,0,.6) 4px
+      );
+      opacity: 0; transition: opacity .5s;
+    }
+    .privacy__screen:hover .privacy__overlay { opacity: 1; }
+    .privacy__screen-content {
+      padding: 20px; position: relative; z-index: 1; text-align: center;
+    }
+    .privacy__screen-content p { font-size: .75rem; color: rgba(255,255,255,.6); line-height: 1.6; }
+    .privacy__tip {
+      position: absolute; bottom: -20px; right: -20px;
+      background: rgba(255,255,255,.07); backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,.1);
+      padding: 10px 14px; border-radius: 10px;
+      font-size: .75rem; color: var(--muted);
+    }
+    @media (max-width: 900px) {
+      .privacy__inner { grid-template-columns: 1fr; }
+      .privacy__visual { order: -1; }
+    }
+
+    /* ─────────────────────────────────────────────
+       PRICING
+    ───────────────────────────────────────────── */
+    .pricing { background: var(--grad1); position: relative; overflow: hidden; }
+    .pricing::before {
+      content: '';
+      position: absolute; width: 600px; height: 600px; border-radius: 50%;
+      bottom: -200px; left: -100px;
+      background: radial-gradient(circle, rgba(106,90,205,.25), transparent 70%);
+      pointer-events: none;
+    }
+    .pricing__inner {
+      max-width: 1200px; margin: 0 auto; position: relative; z-index: 1;
+      text-align: center;
+    }
+    .pricing__title { font-size: var(--fs-lg); font-weight: 800; margin-bottom: 16px; }
+    .pricing__sub { color: rgba(255,255,255,.6); font-size: var(--fs-md); margin-bottom: 56px; }
+    .pricing__cards {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+      margin-bottom: 48px;
+    }
+    .pricing__card {
+      background: rgba(255,255,255,.05);
+      border: 1.5px solid rgba(255,255,255,.1);
+      border-radius: var(--radius); padding: 32px 24px;
+      transition: background .3s, border-color .3s, transform .3s;
+      cursor: pointer;
+    }
+    .pricing__card:hover, .pricing__card--active {
+      background: rgba(255,255,255,.1);
+      border-color: rgba(61,142,248,.5);
+      transform: translateY(-6px);
+    }
+    .pricing__card--active { border-color: var(--accent); }
+    .pricing__card-storage {
+      font-size: 2rem; font-weight: 800; margin-bottom: 4px;
+    }
+    .pricing__card-ram { font-size: .85rem; color: var(--muted); margin-bottom: 16px; }
+    .pricing__card-price { font-size: 1.4rem; font-weight: 700; color: var(--accent); }
+    .pricing__card-badge {
+      display: inline-block; margin-top: 12px;
+      font-size: .72rem; font-weight: 700; text-transform: uppercase;
+      background: rgba(61,142,248,.15); color: var(--accent);
+      padding: 4px 12px; border-radius: 999px;
+    }
+    .pricing__actions { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+    @media (max-width: 600px) {
+      .pricing__cards { grid-template-columns: 1fr; }
+    }
+
+    /* ─────────────────────────────────────────────
+       FOOTER
+    ───────────────────────────────────────────── */
+    .footer {
+      background: #070707; border-top: 1px solid var(--border);
+      padding: 60px 24px 40px;
+    }
+    .footer__inner {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 60px;
+      margin-bottom: 48px;
+    }
+    .footer__brand-name { font-size: 1.2rem; font-weight: 700; margin-bottom: 12px; }
+    .footer__brand-desc { font-size: .85rem; color: var(--muted); line-height: 1.7; }
+    .footer__col h4 { font-size: .85rem; font-weight: 700; margin-bottom: 18px; color: #aaa; }
+    .footer__col li + li { margin-top: 10px; }
+    .footer__col a { font-size: .85rem; color: var(--muted); transition: color .2s; }
+    .footer__col a:hover { color: var(--text); }
+    .footer__bottom {
+      border-top: 1px solid var(--border); padding-top: 24px;
+      display: flex; justify-content: space-between; align-items: center;
+      gap: 16px; flex-wrap: wrap;
+    }
+    .footer__copy { font-size: .8rem; color: var(--muted); }
+    .footer__disclaimer { font-size: .75rem; color: rgba(255,255,255,.25); max-width: 640px; }
+    @media (max-width: 768px) {
+      .footer__inner { grid-template-columns: 1fr; gap: 36px; }
+      .footer__bottom { flex-direction: column; text-align: center; }
+    }
+
+    /* ─────────────────────────────────────────────
+       SCROLL-TO-TOP
+    ───────────────────────────────────────────── */
+    .scroll-top {
+      position: fixed; bottom: 28px; right: 28px; z-index: 99;
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--accent);
+      display: grid; place-items: center;
+      box-shadow: 0 4px 20px rgba(61,142,248,.45);
+      cursor: pointer; border: none;
+      opacity: 0; pointer-events: none; transition: opacity .3s, transform .3s;
+    }
+    .scroll-top.show { opacity: 1; pointer-events: all; }
+    .scroll-top svg { width: 18px; height: 18px; fill: #fff; }
+    .scroll-top:hover { transform: translateY(-3px); }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════
+       NAVBAR
+  ══════════════════════════════════════════ -->
+  <nav class="navbar">
+    <div class="navbar__inner">
+      <div class="navbar__logo">
+        <!-- Samsung wordmark (simplified SVG) -->
+        <svg viewBox="0 0 120 28" xmlns="http://www.w3.org/2000/svg">
+          <text x="0" y="22" font-family="DM Sans,sans-serif" font-size="22" font-weight="800" fill="currentColor">SAMSUNG</text>
+        </svg>
+      </div>
+      <ul class="navbar__links">
+        <li><a href="#design">Thiết kế</a></li>
+        <li><a href="#camera">Camera</a></li>
+        <li><a href="#ai">Galaxy AI</a></li>
+        <li><a href="#performance">Hiệu năng</a></li>
+        <li><a href="#specs">Thông số</a></li>
+        <li><a href="#pricing">Mua ngay</a></li>
+      </ul>
+      <a href="#pricing" class="navbar__cta">Mua ngay</a>
+    </div>
+  </nav>
+
+  <!-- ══════════════════════════════════════════
+       HERO
+  ══════════════════════════════════════════ -->
+  <section class="hero">
+    <div class="hero__blob hero__blob--1"></div>
+    <div class="hero__blob hero__blob--2"></div>
+
+    <div class="hero__inner">
+      <!-- Left: Text -->
+      <div>
+        <div class="hero__eyebrow reveal">
+          <span class="hero__badge">Mới 2026</span>
+          <span class="tag">Galaxy AI</span>
+        </div>
+        <h1 class="hero__title reveal delay-1">
+          Galaxy<br/>
+          S26 <span>Ultra</span>
+        </h1>
+        <p class="hero__sub reveal delay-2">
+          Điện thoại AI thế hệ mới với camera 200MP sáng nhất từ trước đến nay,
+          bộ xử lý Snapdragon tùy chỉnh và Privacy Display
+          chống nhìn trộm chủ động đầu tiên trên di động.
+        </p>
+        <div class="hero__actions reveal delay-3">
+          <a href="#pricing" class="btn btn-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+            Mua ngay
+          </a>
+          <a href="#specs" class="btn btn-outline">Xem thông số</a>
+        </div>
+        <div class="hero__price-tag reveal delay-4">
+          <div>
+            <div class="hero__price">42.990.000₫</div>
+            <div class="hero__price-label">Bắt đầu từ / 512GB · 12GB RAM</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Phone image -->
+      <div class="hero__image-wrap reveal-right">
+        <img
+          class="hero__phone"
+          src="https://images.samsung.com/vn/smartphones/galaxy-s26-ultra/images/galaxy-s26-ultra-features-kv-tb.jpg?imbypass=true"
+          alt="Samsung Galaxy S26 Ultra màu Tím Cobalt"
+          onerror="this.onerror=null; this.src=''; this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg,rgba(106,90,205,.3),rgba(61,142,248,.2))'; this.parentElement.style.borderRadius='24px'; this.parentElement.style.minHeight='500px';"
+        />
+        <div class="hero__review reveal delay-5">
+          <strong>"Vượt trội về AI"</strong> – TechRadar 02/2026
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       FEATURE STRIP
+  ══════════════════════════════════════════ -->
+  <div class="strip">
+    <div class="strip__inner">
+      <div class="strip__item reveal">
+        <div class="strip__icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
+        </div>
+        <span class="strip__val">200 MP</span>
+        <span class="strip__key">Camera F1.4 sáng nhất</span>
+      </div>
+      <div class="strip__item reveal delay-1">
+        <div class="strip__icon">
+          <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/></svg>
+        </div>
+        <span class="strip__val">Galaxy AI</span>
+        <span class="strip__key">Now Nudge · Photo Assist</span>
+      </div>
+      <div class="strip__item reveal delay-2">
+        <div class="strip__icon">
+          <svg viewBox="0 0 24 24"><path d="M7 4V2H5v2H3v2h2v2h2V6h2V4zm10 0h-4v2h4v14H7V8h2V6H5v14c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2z"/></svg>
+        </div>
+        <span class="strip__val">7,9 mm</span>
+        <span class="strip__key">Thiết kế mỏng nhẹ · 214g</span>
+      </div>
+      <div class="strip__item reveal delay-3">
+        <div class="strip__icon">
+          <svg viewBox="0 0 24 24"><path d="M15.67 4H14V2h-4v2H8.33C7.6 4 7 4.6 7 5.33v15.33C7 21.4 7.6 22 8.33 22h7.33c.74 0 1.34-.6 1.34-1.33V5.33C17 4.6 16.4 4 15.67 4zM13 18h-2v-2h2v2zm0-4h-2V9h2v5z"/></svg>
+        </div>
+        <span class="strip__val">60W</span>
+        <span class="strip__key">Sạc nhanh · 31h xem video</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       DESIGN
+  ══════════════════════════════════════════ -->
+  <section class="section design" id="design">
+    <div class="design__inner container">
+      <div class="reveal-left">
+        <div class="section-label">Thiết kế</div>
+        <h2 class="section-title">Tinh tế đến<br/>từng chi tiết</h2>
+        <p class="section-sub">
+          Cụm camera kính liền mạch mới, thiết kế mỏng 7,9mm và nhẹ chỉ 214g.
+          Khung Armor Aluminum bền bỉ cùng Gorilla Armor 2 chống trầy xước.
+        </p>
+
+        <!-- Color Pickers -->
+        <div class="colors-row">
+          <div class="color-chip">
+            <div class="color-chip__circle" style="background: #5b4c8a;"></div>
+            <span class="color-chip__name">Tím Cobalt</span>
+          </div>
+          <div class="color-chip">
+            <div class="color-chip__circle" style="background: #efefef; border-color: rgba(255,255,255,.3);"></div>
+            <span class="color-chip__name">Trắng Classic</span>
+          </div>
+          <div class="color-chip">
+            <div class="color-chip__circle" style="background: #87ceeb;"></div>
+            <span class="color-chip__name">Xanh Sky Blue</span>
+          </div>
+          <div class="color-chip">
+            <div class="color-chip__circle" style="background: #1a1a1a; border-color: rgba(255,255,255,.2);"></div>
+            <span class="color-chip__name">Đen Classic</span>
+          </div>
+        </div>
+
+        <div class="design__specs">
+          <div class="design__spec">
+            <div class="design__spec-val">7,9 mm</div>
+            <div class="design__spec-key">Mỏng hơn 0,7mm so với S24 Ultra</div>
+          </div>
+          <div class="design__spec">
+            <div class="design__spec-val">214 g</div>
+            <div class="design__spec-key">Nhẹ hơn 18g so với S24 Ultra</div>
+          </div>
+          <div class="design__spec">
+            <div class="design__spec-val">6,9"</div>
+            <div class="design__spec-key">Dynamic AMOLED 2X QHD+</div>
+          </div>
+          <div class="design__spec">
+            <div class="design__spec-val">IP68</div>
+            <div class="design__spec-key">Kháng nước sâu 1,5m/30 phút</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phone color stack -->
+      <div class="design__phone-grid reveal-right">
+        <!-- Cobalt main -->
+        <div style="text-align:center">
+          <div style="
+            width:180px; height:340px; background: linear-gradient(160deg, #5b4c8a, #3a2f6a);
+            border-radius:40px; display:flex; flex-direction:column; align-items:center; justify-content:center;
+            box-shadow: 0 20px 60px rgba(91,76,138,.4); position:relative; overflow:hidden;
+          ">
+            <!-- Camera Module -->
+            <div style="
+              position:absolute; top:22px; left:50%; transform:translateX(-50%);
+              width:72px; padding:10px; background:rgba(0,0,0,.5); border-radius:14px;
+              display:flex; flex-wrap:wrap; gap:5px; justify-content:center;
+            ">
+              <div style="width:24px;height:24px;background:#222;border-radius:50%;border:2px solid #444;"></div>
+              <div style="width:24px;height:24px;background:#222;border-radius:50%;border:2px solid #444;"></div>
+              <div style="width:24px;height:24px;background:#222;border-radius:50%;border:2px solid #444;display:flex;align-items:center;justify-content:center;"><div style="width:6px;height:6px;background:#555;border-radius:50%;"></div></div>
+            </div>
+            <!-- Screen -->
+            <div style="
+              width:130px; height:210px; background:linear-gradient(135deg,#1a0a2e,#0d1b4b);
+              border-radius:24px; margin-top:60px;
+              border:1px solid rgba(255,255,255,.1);
+              display:flex;align-items:center;justify-content:center;
+            ">
+              <div style="text-align:center; padding:10px;">
+                <div style="font-size:.65rem; color:rgba(255,255,255,.5); margin-bottom:6px;">Galaxy AI</div>
+                <div style="font-size:.8rem; font-weight:700; color:#74aaff;">S26 Ultra</div>
+                <div style="width:40px;height:2px;background:rgba(255,255,255,.2);border-radius:1px;margin:8px auto;"></div>
+                <div style="font-size:.6rem;color:rgba(255,255,255,.4);">Snapdragon 8 Elite</div>
+              </div>
+            </div>
+          </div>
+          <div style="font-size:.78rem; color:var(--muted); margin-top:12px;">Tím Cobalt</div>
+        </div>
+
+        <!-- Sky Blue side -->
+        <div style="text-align:center; align-self:flex-end;">
+          <div style="
+            width:130px; height:250px; background: linear-gradient(160deg, #a8d8ea, #6bb8d4);
+            border-radius:32px;
+            box-shadow: 0 16px 40px rgba(135,206,235,.3); opacity:.85;
+          "></div>
+          <div style="font-size:.72rem; color:var(--muted); margin-top:10px;">Sky Blue</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       CAMERA
+  ══════════════════════════════════════════ -->
+  <section class="section camera" id="camera">
+    <div class="camera__inner container">
+      <div class="camera__header">
+        <div class="section-label reveal">Camera</div>
+        <h2 class="section-title reveal delay-1">Camera sáng nhất<br/>từ trước đến nay</h2>
+        <p class="section-sub reveal delay-2">
+          Hệ thống 4 camera với khẩu độ F1.4 tốt nhất dòng Galaxy, Nightography cải tiến
+          và Space Zoom 100x hỗ trợ AI.
+        </p>
+      </div>
+
+      <div class="camera__grid">
+        <!-- Camera 1 -->
+        <div class="camera__card reveal">
+          <div class="camera__card-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M20 4h-3.17L15 2H9L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-8 13c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/></svg>
+          </div>
+          <div class="camera__card-mp">200 MP</div>
+          <div class="camera__card-type">Camera Góc rộng chính</div>
+          <span class="camera__card-aper">F1.4</span>
+          <p class="camera__card-desc">Khẩu độ sáng nhất dòng Galaxy Ultra. Thu sáng nhiều hơn 47% so với S25 Ultra, bắt trọn từng chi tiết trong bóng tối.</p>
+        </div>
+
+        <!-- Camera 2 -->
+        <div class="camera__card reveal delay-1">
+          <div class="camera__card-icon">
+            <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+          </div>
+          <div class="camera__card-mp">50 MP</div>
+          <div class="camera__card-type">Camera Góc siêu rộng</div>
+          <span class="camera__card-aper">F1.9</span>
+          <p class="camera__card-desc">Cải tiến lớn so với S24 Ultra (12MP F2.2). Góc siêu rộng sắc nét hơn, thu sáng tốt hơn cho mọi cảnh quay rộng.</p>
+        </div>
+
+        <!-- Camera 3 -->
+        <div class="camera__card reveal delay-2">
+          <div class="camera__card-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+          </div>
+          <div class="camera__card-mp">50 MP</div>
+          <div class="camera__card-type">Camera Telephoto</div>
+          <span class="camera__card-aper">F2.9</span>
+          <p class="camera__card-desc">Thu sáng cải thiện 37% so với S25 Ultra. Zoom quang học 5x/10x siêu nét, nền tảng Space Zoom 100x.</p>
+        </div>
+      </div>
+
+      <!-- Space Zoom Bar -->
+      <div class="zoom-bar reveal">
+        <div class="zoom-bar__text">
+          <div class="section-label">Space Zoom</div>
+          <h3 style="font-size:1.5rem;font-weight:700;margin:8px 0;">Tầm nhìn vượt giới hạn</h3>
+          <p style="font-size:.88rem;color:var(--muted);">
+            Từ góc siêu rộng 0,6x đến 100x được hỗ trợ bởi AI – mọi khoảng cách đều sắc nét.
+          </p>
+        </div>
+        <div class="zoom-steps">
+          <div class="zoom-step"><div class="zoom-step__val">0,6x</div><div class="zoom-step__key">Siêu rộng</div></div>
+          <div class="zoom-step"><div class="zoom-step__val">1x</div><div class="zoom-step__key">Góc rộng</div></div>
+          <div class="zoom-step"><div class="zoom-step__val">3x</div><div class="zoom-step__key">Quang học</div></div>
+          <div class="zoom-step"><div class="zoom-step__val">10x</div><div class="zoom-step__key">Quang học</div></div>
+          <div class="zoom-step"><div class="zoom-step__val">100x</div><div class="zoom-step__key">Space Zoom</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       GALAXY AI
+  ══════════════════════════════════════════ -->
+  <section class="section section--alt" id="ai">
+    <div class="ai__inner container">
+      <div class="ai__header">
+        <div class="reveal-left">
+          <div class="section-label">AI</div>
+          <div class="ai__logo">Galaxy AI</div>
+          <p class="section-sub" style="margin-top:16px;">
+            Trí tuệ nhân tạo được tích hợp sâu vào mọi khía cạnh của thiết bị,
+            từ chụp ảnh, chỉnh sửa đến tổ chức công việc hàng ngày.
+          </p>
+        </div>
+        <div class="reveal-right" style="
+          background: linear-gradient(135deg, rgba(168,139,250,.1), rgba(61,142,248,.08));
+          border: 1px solid rgba(168,139,250,.15);
+          border-radius: var(--radius); padding: 32px; text-align:center;
+        ">
+          <div style="font-size:3rem;margin-bottom:8px;">🤖</div>
+          <h3 style="font-size:1.2rem;font-weight:700;margin-bottom:8px;">Chạy trên thiết bị</h3>
+          <p style="font-size:.85rem;color:var(--muted);">AI xử lý ngay trên thiết bị, bảo vệ quyền riêng tư tuyệt đối với Personal Data Engine & Knox Vault.</p>
+        </div>
+      </div>
+
+      <div class="ai__features">
+        <div class="ai__feat reveal">
+          <div class="ai__feat-num">01</div>
+          <h3>Photo Assist</h3>
+          <p>Chỉnh ảnh bằng lệnh văn bản tự nhiên. Thêm, xóa, thay đổi đối tượng – chuẩn studio ngay trên máy.</p>
+        </div>
+        <div class="ai__feat reveal delay-1">
+          <div class="ai__feat-num">02</div>
+          <h3>Now Nudge</h3>
+          <p>Gợi ý thông minh theo ngữ cảnh màn hình theo thời gian thực. Tự tìm ảnh, tự điền thông tin liên quan.</p>
+        </div>
+        <div class="ai__feat reveal delay-2">
+          <div class="ai__feat-num">03</div>
+          <h3>Now Brief</h3>
+          <p>Tóm tắt thông minh xuyên suốt ngày – từ lịch tập, đặt vé đến lời nhắc thú cưng chạy bộ đúng giờ.</p>
+        </div>
+        <div class="ai__feat reveal delay-3">
+          <div class="ai__feat-num">04</div>
+          <h3>Creative Studio</h3>
+          <p>Biến ảnh thành bộ sticker độc đáo. Vẽ phác thảo hoặc dùng ảnh – Galaxy AI hiện thực hóa ý tưởng.</p>
+        </div>
+        <div class="ai__feat reveal delay-4">
+          <div class="ai__feat-num">05</div>
+          <h3>Khoanh tròn tìm kiếm</h3>
+          <p>Khoanh tròn bất kỳ đối tượng nào trên màn hình – Google tìm ngay toàn bộ thông tin liên quan.</p>
+        </div>
+        <div class="ai__feat reveal delay-5">
+          <div class="ai__feat-num">06</div>
+          <h3>Bixby AI Agent</h3>
+          <p>Trợ lý thiết bị cá nhân biết hỏi theo kiểu hội thoại tự nhiên, tìm kiếm web và điều chỉnh cài đặt tức thì.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       PRIVACY DISPLAY
+  ══════════════════════════════════════════ -->
+  <section class="section privacy" id="privacy">
+    <div class="privacy__inner container">
+      <div class="reveal-left">
+        <div class="section-label">Màn hình riêng tư</div>
+        <h2 class="section-title">Privacy Display<br/>Chống nhìn trộm<br/>chủ động #1</h2>
+        <p class="section-sub">
+          Công nghệ chống nhìn trộm chủ động đầu tiên trên thiết bị di động thế giới.
+          Chỉ bạn mới thấy – người xung quanh chỉ thấy màn hình tối.
+        </p>
+        <div style="margin-top: 32px; display:flex; flex-direction:column; gap:12px;">
+          <div style="display:flex;align-items:center;gap:12px;">
+            <div style="width:8px;height:8px;border-radius:50%;background:var(--accent);flex-shrink:0;"></div>
+            <span style="font-size:.9rem;color:var(--muted);">Bật/tắt thủ công hoặc cho từng ứng dụng cụ thể</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;">
+            <div style="width:8px;height:8px;border-radius:50%;background:var(--accent);flex-shrink:0;"></div>
+            <span style="font-size:.9rem;color:var(--muted);">Tự động kích hoạt khi nhập PIN, mật khẩu</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;">
+            <div style="width:8px;height:8px;border-radius:50%;background:var(--accent);flex-shrink:0;"></div>
+            <span style="font-size:.9rem;color:var(--muted);">Bixby điều khiển Privacy Display bằng giọng nói</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="privacy__visual reveal-right">
+        <div class="privacy__screen">
+          <div class="privacy__overlay"></div>
+          <div class="privacy__screen-content">
+            <div style="font-size:.8rem;font-weight:700;color:#74aaff;margin-bottom:10px;">🔒 Privacy Display</div>
+            <p>Di chuyển chuột vào điện thoại để xem hiệu ứng chống nhìn trộm</p>
+          </div>
+        </div>
+        <div class="privacy__tip">Di chuyển chuột để xem hiệu ứng</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       PERFORMANCE
+  ══════════════════════════════════════════ -->
+  <section class="section perf" id="performance">
+    <div class="perf__inner container">
+      <div class="reveal-left">
+        <div class="section-label">Hiệu năng</div>
+        <h2 class="section-title">Bộ xử lý<br/>tùy chỉnh cho Galaxy</h2>
+        <p class="section-sub">
+          Snapdragon® 8 Elite Gen 5 được tối ưu riêng cho Galaxy. Hiệu năng AI,
+          đồ họa và CPU đều vượt trội so với thế hệ trước.
+        </p>
+        <div style="margin-top:16px;padding:16px 20px;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:12px;display:inline-block;">
+          <div style="font-size:.8rem;color:var(--muted);margin-bottom:2px;">Chip</div>
+          <div style="font-weight:700;">Snapdragon® 8 Elite Gen 5 for Galaxy</div>
+        </div>
+
+        <div class="perf__chips">
+          <div class="perf__chip reveal">
+            <div class="perf__chip-bar perf__chip-bar--purp"></div>
+            <div>
+              <div class="perf__chip-pct">+39%</div>
+              <div class="perf__chip-label">NPU · AI mạnh hơn</div>
+            </div>
+          </div>
+          <div class="perf__chip reveal delay-1">
+            <div class="perf__chip-bar perf__chip-bar--blue"></div>
+            <div>
+              <div class="perf__chip-pct">+24%</div>
+              <div class="perf__chip-label">GPU · Đồ họa mượt</div>
+            </div>
+          </div>
+          <div class="perf__chip reveal delay-2">
+            <div class="perf__chip-bar perf__chip-bar--green"></div>
+            <div>
+              <div class="perf__chip-pct">+19%</div>
+              <div class="perf__chip-label">CPU · Xử lý nhanh</div>
+            </div>
+          </div>
+          <div class="perf__chip reveal delay-3">
+            <div class="perf__chip-bar perf__chip-bar--orange"></div>
+            <div>
+              <div class="perf__chip-pct">+21%</div>
+              <div class="perf__chip-label">Tản nhiệt · Vapor Chamber</div>
+            </div>
+          </div>
+        </div>
+        <p style="font-size:.76rem;color:var(--muted);margin-top:12px;">So sánh với Galaxy S25 Ultra</p>
+      </div>
+
+      <!-- Battery Card -->
+      <div class="reveal-right">
+        <div class="perf__battery">
+          <div class="perf__battery-ring">
+            <div class="perf__battery-ring-text">
+              <div class="val">75%</div>
+              <div class="sub">30 phút</div>
+            </div>
+          </div>
+          <h3>Sạc Siêu Nhanh 60W</h3>
+          <p>Super Fast Charging 3.0 – nạp 75% chỉ trong 30 phút, bảo vệ tuổi thọ pin tối ưu.</p>
+          <div class="perf__battery-stats">
+            <div class="perf__stat">
+              <div class="perf__stat-val">31 giờ</div>
+              <div class="perf__stat-key">Xem video liên tục</div>
+            </div>
+            <div class="perf__stat">
+              <div class="perf__stat-val">4855 mAh</div>
+              <div class="perf__stat-key">Dung lượng pin</div>
+            </div>
+            <div class="perf__stat">
+              <div class="perf__stat-val">15W</div>
+              <div class="perf__stat-key">Sạc không dây</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       SPECS TABLE
+  ══════════════════════════════════════════ -->
+  <section class="section specs" id="specs">
+    <div class="specs__inner container">
+      <div class="specs__header">
+        <div class="section-label reveal">Thông số kỹ thuật</div>
+        <h2 class="section-title reveal delay-1">Thông số đầy đủ</h2>
+      </div>
+      <div class="reveal delay-2" style="overflow-x:auto;">
+        <table class="specs__table">
+          <thead>
+            <tr>
+              <th>Thông số</th>
+              <th>Galaxy S26 Ultra</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Màn hình</td><td>6,9" Dynamic AMOLED 2X, QHD+ (3088×1440), 120Hz, 2600 nits</td></tr>
+            <tr><td>Bộ xử lý</td><td>Snapdragon 8 Elite Gen 5 for Galaxy (3nm)</td></tr>
+            <tr><td>RAM / ROM</td><td>12GB / 256GB · 512GB &nbsp;&nbsp;|&nbsp;&nbsp; 16GB / 1TB</td></tr>
+            <tr><td>Camera sau</td><td>200MP F1.4 (chính) · 50MP F1.9 (siêu rộng) · 50MP F2.9 (tele 5x) · 10MP F4.9 (tele 10x)</td></tr>
+            <tr><td>Camera trước</td><td>12MP F2.2, AI ISP tăng cường</td></tr>
+            <tr><td>Video</td><td>8K@30fps, 4K@120fps, LOG format, Space Zoom 100x</td></tr>
+            <tr><td>Pin</td><td>4855 mAh · 60W có dây · 15W không dây · 4,5W ngược chiều</td></tr>
+            <tr><td>Hệ điều hành</td><td>Android 16, One UI 8.5</td></tr>
+            <tr><td>Kết nối</td><td>5G, Wi-Fi 7, Bluetooth 5.4, NFC, USB 3.2 Gen 2</td></tr>
+            <tr><td>Màu sắc</td><td>Tím Cobalt · Trắng Classic · Xanh Sky Blue · Đen Classic</td></tr>
+            <tr><td>Kích thước</td><td>162,8 × 77,6 × 7,9 mm · 214g</td></tr>
+            <tr><td>Khung & kính</td><td>Armor Aluminum · Corning Gorilla Armor 2 (trước) · Gorilla Glass Victus 2 (sau)</td></tr>
+            <tr><td>Kháng nước/bụi</td><td>IP68 – 1,5m / 30 phút</td></tr>
+            <tr><td>Bảo mật</td><td>Vân tay siêu âm dưới màn hình · Samsung Knox · Knox Vault · Privacy Display</td></tr>
+            <tr><td>S Pen</td><td>Tích hợp sẵn trong máy, độ trễ 2.8ms</td></tr>
+            <tr><td>Giá</td><td>Từ 42.990.000₫ (512GB)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       PRICING
+  ══════════════════════════════════════════ -->
+  <section class="section pricing" id="pricing">
+    <div class="pricing__inner container">
+      <div class="section-label reveal">Chọn phiên bản</div>
+      <h2 class="pricing__title reveal delay-1">Sở hữu ngay<br/>Galaxy S26 Ultra</h2>
+      <p class="pricing__sub reveal delay-2">
+        3 tùy chọn bộ nhớ – chọn phiên bản phù hợp với nhu cầu của bạn.
+      </p>
+
+      <div class="pricing__cards">
+        <div class="pricing__card reveal" onclick="selectVariant(this)">
+          <div class="pricing__card-storage">256 GB</div>
+          <div class="pricing__card-ram">12 GB RAM</div>
+          <div class="pricing__card-price">40.990.000 ₫</div>
+        </div>
+        <div class="pricing__card pricing__card--active reveal delay-1" onclick="selectVariant(this)">
+          <div class="pricing__card-storage">512 GB</div>
+          <div class="pricing__card-ram">12 GB RAM</div>
+          <div class="pricing__card-price">42.990.000 ₫</div>
+          <span class="pricing__card-badge">Phổ biến nhất</span>
+        </div>
+        <div class="pricing__card reveal delay-2" onclick="selectVariant(this)">
+          <div class="pricing__card-storage">1 TB</div>
+          <div class="pricing__card-ram">16 GB RAM</div>
+          <div class="pricing__card-price">47.990.000 ₫</div>
+          <span class="pricing__card-badge" style="background:rgba(168,139,250,.15);color:#c084fc;">Pro</span>
+        </div>
+      </div>
+
+      <div class="pricing__actions reveal delay-3">
+        <a href="https://www.samsung.com/vn/smartphones/galaxy-s26-ultra/buy/" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="font-size:1.05rem;padding:16px 44px;">
+          Mua tại Samsung.com
+        </a>
+        <a href="https://www.samsung.com/vn/smartphones/galaxy-s26-ultra/" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="font-size:1.05rem;padding:15px 36px;">
+          Tìm hiểu thêm
+        </a>
+      </div>
+
+      <p style="font-size:.78rem;color:rgba(255,255,255,.3);margin-top:32px;">
+        Giá tham khảo. Hỗ trợ trả góp 0% đến 12 tháng. Giao hàng miễn phí tận nơi.
+      </p>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="footer__inner container">
+      <div class="footer__brand">
+        <div class="footer__brand-name">SAMSUNG Galaxy S26 Ultra</div>
+        <p class="footer__brand-desc">
+          Điện thoại AI thế hệ mới – Bộ xử lý tùy chỉnh, camera 200MP F1.4,
+          Privacy Display và Galaxy AI ngay trong tầm tay bạn.
+        </p>
+      </div>
+      <div class="footer__col">
+        <h4>Sản phẩm</h4>
+        <ul>
+          <li><a href="#design">Thiết kế</a></li>
+          <li><a href="#camera">Camera</a></li>
+          <li><a href="#ai">Galaxy AI</a></li>
+          <li><a href="#performance">Hiệu năng</a></li>
+          <li><a href="#specs">Thông số</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Mua hàng</h4>
+        <ul>
+          <li><a href="#pricing">Chọn phiên bản</a></li>
+          <li><a href="https://www.samsung.com/vn/offer/samsung-care-plus/" target="_blank" rel="noopener noreferrer">Samsung Care+</a></li>
+          <li><a href="https://www.samsung.com/vn/shop-faq/" target="_blank" rel="noopener noreferrer">FAQ mua online</a></li>
+          <li><a href="https://www.samsung.com/vn/support/" target="_blank" rel="noopener noreferrer">Hỗ trợ</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom container">
+      <p class="footer__copy">© 2026 Samsung Electronics Vietnam. Tất cả quyền được bảo lưu.</p>
+      <p class="footer__disclaimer">Đây là trang landing page minh họa. Thông tin sản phẩm lấy từ Samsung.com/vn. Giá và tính năng có thể thay đổi.</p>
+    </div>
+  </footer>
+
+  <!-- Scroll to top -->
+  <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <svg viewBox="0 0 24 24"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg>
+  </button>
+
+  <!-- ══════════════════════════════════════════
+       SCRIPTS
+  ══════════════════════════════════════════ -->
+  <script>
+    // ── Scroll Reveal ──────────────────────────────
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
+
+    // ── Scroll-to-top button ───────────────────────
+    const scrollBtn = document.getElementById('scrollTop');
+    window.addEventListener('scroll', () => {
+      scrollBtn.classList.toggle('show', window.scrollY > 500);
+    });
+
+    // ── Pricing card selection ─────────────────────
+    function selectVariant(el) {
+      document.querySelectorAll('.pricing__card').forEach(c => c.classList.remove('pricing__card--active'));
+      el.classList.add('pricing__card--active');
+    }
+
+    // ── Navbar on scroll ──────────────────────────
+    const navbar = document.querySelector('.navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 60) {
+        navbar.style.background = 'rgba(10,10,10,.92)';
+      } else {
+        navbar.style.background = 'rgba(10,10,10,.7)';
+      }
+    });
+
+    // ── Smooth anchor scroll ──────────────────────
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
