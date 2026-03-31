@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shop Demo – Giao diện bán hàng</title>
+
+  <!-- Tailwind CSS v4 CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- DaisyUI CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4/dist/full.min.css" rel="stylesheet" />
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+</head>
+<body class="min-h-screen bg-base-200">
+
+  <!-- ── Navbar ─────────────────────────────── -->
+  <div class="navbar bg-base-100 shadow-sm sticky top-0 z-50 px-4">
+    <div class="flex-1 gap-2">
+      <i data-lucide="shopping-bag" class="w-6 h-6 text-primary"></i>
+      <a class="text-xl font-bold text-primary">ShopDemo</a>
+    </div>
+    <div class="flex-none gap-3">
+      <!-- Tìm kiếm -->
+      <div class="form-control hidden sm:block">
+        <input
+          id="searchInput"
+          type="text"
+          placeholder="Tìm sản phẩm..."
+          class="input input-bordered input-sm w-48"
+          oninput="filterProducts()"
+        />
+      </div>
+      <!-- Giỏ hàng -->
+      <div class="indicator">
+        <span id="cartBadge" class="indicator-item badge badge-primary badge-sm">0</span>
+        <button class="btn btn-ghost btn-circle" onclick="document.getElementById('cartDrawer').checked=true">
+          <i data-lucide="shopping-cart" class="w-5 h-5"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Drawer giỏ hàng ────────────────────── -->
+  <div class="drawer drawer-end">
+    <input id="cartDrawer" type="checkbox" class="drawer-toggle" />
+    <div class="drawer-content">
+
+      <!-- ── Nội dung chính ──────────────────── -->
+      <main class="container mx-auto px-4 py-8 max-w-6xl">
+
+        <!-- Banner -->
+        <div class="hero bg-primary text-primary-content rounded-2xl mb-8 py-10 px-6">
+          <div class="hero-content flex-col lg:flex-row gap-6">
+            <i data-lucide="zap" class="w-20 h-20 opacity-80 shrink-0"></i>
+            <div>
+              <h1 class="text-3xl font-bold">Flash Sale hôm nay!</h1>
+              <p class="mt-2 opacity-80">Giảm đến 50% cho hàng trăm sản phẩm. Số lượng có hạn.</p>
+              <button class="btn btn-secondary mt-4 gap-2" onclick="window.scrollTo({top:300,behavior:'smooth'})">
+                <i data-lucide="arrow-down" class="w-4 h-4"></i>
+                Xem ngay
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Danh mục -->
+        <div class="flex gap-2 flex-wrap mb-6">
+          <button class="btn btn-primary btn-sm category-btn" onclick="filterCategory('all', this)">Tất cả</button>
+          <button class="btn btn-outline btn-sm category-btn" onclick="filterCategory('phone', this)">Điện thoại</button>
+          <button class="btn btn-outline btn-sm category-btn" onclick="filterCategory('laptop', this)">Laptop</button>
+          <button class="btn btn-outline btn-sm category-btn" onclick="filterCategory('audio', this)">Âm thanh</button>
+          <button class="btn btn-outline btn-sm category-btn" onclick="filterCategory('watch', this)">Đồng hồ</button>
+        </div>
+
+        <!-- Lưới sản phẩm -->
+        <div id="productGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+          <!-- Sản phẩm được render bằng JS bên dưới -->
+        </div>
+
+        <!-- Không có sản phẩm -->
+        <div id="emptyState" class="hidden flex-col items-center justify-center py-20 text-base-content/50">
+          <i data-lucide="search-x" class="w-16 h-16 mb-4"></i>
+          <p class="text-lg">Không tìm thấy sản phẩm nào</p>
+        </div>
+
+      </main>
+    </div>
+
+    <!-- ── Sidebar giỏ hàng ────────────────── -->
+    <div class="drawer-side z-50">
+      <label for="cartDrawer" class="drawer-overlay"></label>
+      <div class="menu bg-base-100 min-h-full w-80 p-4 flex flex-col shadow-xl">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-lg font-bold flex items-center gap-2">
+            <i data-lucide="shopping-cart" class="w-5 h-5 text-primary"></i>
+            Giỏ hàng
+          </h2>
+          <label for="cartDrawer" class="btn btn-ghost btn-circle btn-sm">
+            <i data-lucide="x" class="w-4 h-4"></i>
+          </label>
+        </div>
+
+        <!-- Danh sách sản phẩm trong giỏ -->
+        <div id="cartItems" class="flex-1 space-y-3 overflow-y-auto">
+          <p class="text-base-content/50 text-sm text-center py-10">Giỏ hàng trống</p>
+        </div>
+
+        <!-- Tổng tiền & thanh toán -->
+        <div class="border-t pt-4 mt-4">
+          <div class="flex justify-between text-sm mb-1">
+            <span class="text-base-content/60">Tạm tính</span>
+            <span id="cartSubtotal">0 ₫</span>
+          </div>
+          <div class="flex justify-between font-bold mb-4">
+            <span>Tổng cộng</span>
+            <span id="cartTotal" class="text-primary text-lg">0 ₫</span>
+          </div>
+          <button class="btn btn-primary w-full gap-2" onclick="checkout()">
+            <i data-lucide="credit-card" class="w-4 h-4"></i>
+            Thanh toán
+          </button>
+          <button class="btn btn-ghost btn-sm w-full mt-2 text-error" onclick="clearCart()">
+            Xóa giỏ hàng
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast thông báo -->
+  <div id="toast" class="toast toast-top toast-end hidden z-[100]">
+    <div class="alert alert-success gap-2">
+      <i data-lucide="check-circle" class="w-4 h-4"></i>
+      <span id="toastMsg"></span>
+    </div>
+  </div>
+
+  <!-- Modal thanh toán thành công -->
+  <dialog id="successModal" class="modal">
+    <div class="modal-box text-center">
+      <div class="text-success flex justify-center mb-3">
+        <i data-lucide="package-check" class="w-16 h-16"></i>
+      </div>
+      <h3 class="font-bold text-xl">Đặt hàng thành công!</h3>
+      <p class="py-3 text-base-content/60">Cảm ơn bạn đã mua hàng. Đơn hàng sẽ được giao trong 2–3 ngày.</p>
+      <div class="modal-action justify-center">
+        <form method="dialog">
+          <button class="btn btn-primary">Tiếp tục mua sắm</button>
+        </form>
+      </div>
+    </div>
+  </dialog>
+
+  <script>
+    // ── Dữ liệu sản phẩm mẫu ─────────────────────
+    const products = [
+      { id: 1, name: 'iPhone 16 Pro', price: 27990000, category: 'phone', badge: 'Hot', rating: 4.8, sold: 1240, img: '📱' },
+      { id: 2, name: 'Samsung S26 Ultra', price: 42990000, category: 'phone', badge: 'Mới', rating: 4.9, sold: 830, img: '📲' },
+      { id: 3, name: 'MacBook Air M4', price: 32990000, category: 'laptop', badge: '-10%', rating: 4.7, sold: 560, img: '💻' },
+      { id: 4, name: 'Dell XPS 15', price: 35990000, category: 'laptop', badge: null, rating: 4.5, sold: 340, img: '🖥️' },
+      { id: 5, name: 'Sony WH-1000XM6', price: 8990000, category: 'audio', badge: '-15%', rating: 4.8, sold: 2100, img: '🎧' },
+      { id: 6, name: 'AirPods Pro 3', price: 6990000, category: 'audio', badge: 'Hot', rating: 4.6, sold: 1870, img: '🎵' },
+      { id: 7, name: 'Apple Watch Ultra 3', price: 22990000, category: 'watch', badge: 'Mới', rating: 4.9, sold: 450, img: '⌚' },
+      { id: 8, name: 'Galaxy Watch 8', price: 9990000, category: 'watch', badge: null, rating: 4.4, sold: 680, img: '🕐' },
+    ];
+
+    // ── State ─────────────────────────────────────
+    let cart = [];
+    let currentCategory = 'all';
+    let searchQuery = '';
+
+    // ── Format tiền VNĐ ──────────────────────────
+    const formatVND = (n) => n.toLocaleString('vi-VN') + ' ₫';
+
+    // ── Render sản phẩm ra lưới ──────────────────
+    function renderProducts(list) {
+      const grid = document.getElementById('productGrid');
+      const empty = document.getElementById('emptyState');
+
+      if (list.length === 0) {
+        grid.innerHTML = '';
+        empty.classList.remove('hidden');
+        empty.classList.add('flex');
+        return;
+      }
+      empty.classList.add('hidden');
+      empty.classList.remove('flex');
+
+      grid.innerHTML = list.map(p => `
+        <div class="card bg-base-100 shadow hover:shadow-md transition-shadow">
+          <div class="card-body p-4 gap-2">
+            <!-- Ảnh đại diện (emoji) -->
+            <div class="text-5xl text-center py-3 bg-base-200 rounded-xl relative">
+              ${p.img}
+              ${p.badge ? `<span class="badge badge-primary badge-sm absolute top-2 right-2">${p.badge}</span>` : ''}
+            </div>
+
+            <!-- Tên & đánh giá -->
+            <p class="font-semibold text-sm leading-tight mt-1">${p.name}</p>
+            <div class="flex items-center gap-1 text-warning text-xs">
+              <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+              <span>${p.rating}</span>
+              <span class="text-base-content/40 ml-1">· ${p.sold.toLocaleString()} đã bán</span>
+            </div>
+
+            <!-- Giá -->
+            <div class="text-primary font-bold">${formatVND(p.price)}</div>
+
+            <!-- Thêm vào giỏ -->
+            <button
+              class="btn btn-primary btn-sm w-full mt-1 gap-1"
+              onclick="addToCart(${p.id})"
+            >
+              <i data-lucide="plus" class="w-3 h-3"></i>
+              Thêm vào giỏ
+            </button>
+          </div>
+        </div>
+      `).join('');
+
+      // Khởi tạo lại Lucide sau khi render HTML mới
+      lucide.createIcons();
+    }
+
+    // ── Lọc theo danh mục ────────────────────────
+    function filterCategory(cat, btn) {
+      currentCategory = cat;
+
+      // Cập nhật trạng thái nút
+      document.querySelectorAll('.category-btn').forEach(b => {
+        b.classList.remove('btn-primary');
+        b.classList.add('btn-outline');
+      });
+      btn.classList.add('btn-primary');
+      btn.classList.remove('btn-outline');
+
+      applyFilters();
+    }
+
+    // ── Lọc theo từ khóa tìm kiếm ────────────────
+    function filterProducts() {
+      searchQuery = document.getElementById('searchInput').value.toLowerCase();
+      applyFilters();
+    }
+
+    // ── Áp dụng cả 2 bộ lọc cùng lúc ────────────
+    function applyFilters() {
+      const filtered = products.filter(p => {
+        const matchCat = currentCategory === 'all' || p.category === currentCategory;
+        const matchSearch = p.name.toLowerCase().includes(searchQuery);
+        return matchCat && matchSearch;
+      });
+      renderProducts(filtered);
+    }
+
+    // ── Thêm sản phẩm vào giỏ ────────────────────
+    function addToCart(id) {
+      const product = products.find(p => p.id === id);
+      const existing = cart.find(item => item.id === id);
+
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        cart.push({ ...product, qty: 1 });
+      }
+
+      updateCart();
+      showToast(`Đã thêm "${product.name}" vào giỏ`);
+    }
+
+    // ── Xóa sản phẩm khỏi giỏ ────────────────────
+    function removeFromCart(id) {
+      cart = cart.filter(item => item.id !== id);
+      updateCart();
+    }
+
+    // ── Cập nhật số lượng trong giỏ ──────────────
+    function changeQty(id, delta) {
+      const item = cart.find(i => i.id === id);
+      if (!item) return;
+      item.qty += delta;
+      if (item.qty <= 0) removeFromCart(id);
+      else updateCart();
+    }
+
+    // ── Xóa toàn bộ giỏ hàng ─────────────────────
+    function clearCart() {
+      cart = [];
+      updateCart();
+    }
+
+    // ── Cập nhật UI giỏ hàng ─────────────────────
+    function updateCart() {
+      const total = cart.reduce((sum, i) => sum + i.price * i.qty, 0);
+      const count = cart.reduce((sum, i) => sum + i.qty, 0);
+
+      // Badge số lượng
+      document.getElementById('cartBadge').textContent = count;
+
+      // Tổng tiền
+      document.getElementById('cartSubtotal').textContent = formatVND(total);
+      document.getElementById('cartTotal').textContent = formatVND(total);
+
+      // Danh sách item trong giỏ
+      const container = document.getElementById('cartItems');
+      if (cart.length === 0) {
+        container.innerHTML = '<p class="text-base-content/50 text-sm text-center py-10">Giỏ hàng trống</p>';
+        return;
+      }
+
+      container.innerHTML = cart.map(item => `
+        <div class="flex items-center gap-3 bg-base-200 rounded-xl p-3">
+          <span class="text-2xl">${item.img}</span>
+          <div class="flex-1 min-w-0">
+            <p class="text-sm font-medium truncate">${item.name}</p>
+            <p class="text-primary text-sm font-bold">${formatVND(item.price)}</p>
+          </div>
+          <div class="flex items-center gap-1">
+            <button class="btn btn-ghost btn-xs btn-circle" onclick="changeQty(${item.id}, -1)">
+              <i data-lucide="minus" class="w-3 h-3"></i>
+            </button>
+            <span class="w-5 text-center text-sm font-bold">${item.qty}</span>
+            <button class="btn btn-ghost btn-xs btn-circle" onclick="changeQty(${item.id}, 1)">
+              <i data-lucide="plus" class="w-3 h-3"></i>
+            </button>
+            <button class="btn btn-ghost btn-xs btn-circle text-error ml-1" onclick="removeFromCart(${item.id})">
+              <i data-lucide="trash-2" class="w-3 h-3"></i>
+            </button>
+          </div>
+        </div>
+      `).join('');
+
+      lucide.createIcons();
+    }
+
+    // ── Thanh toán ────────────────────────────────
+    function checkout() {
+      if (cart.length === 0) {
+        showToast('Giỏ hàng đang trống!');
+        return;
+      }
+      clearCart();
+      document.getElementById('cartDrawer').checked = false;
+      document.getElementById('successModal').showModal();
+    }
+
+    // ── Toast thông báo ──────────────────────────
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toastMsg').textContent = msg;
+      toast.classList.remove('hidden');
+      lucide.createIcons();
+      setTimeout(() => toast.classList.add('hidden'), 2500);
+    }
+
+    // ── Khởi tạo lần đầu ─────────────────────────
+    renderProducts(products);
+    lucide.createIcons();
+  </script>
+</body>
+</html>
