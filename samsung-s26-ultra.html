@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="vi">
 <head>
   <meta charset="UTF-8" />
@@ -10,679 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet" />
-
-  <style>
-    /* ─────────────────────────────────────────────
-       RESET & BASE
-    ───────────────────────────────────────────── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --black:   #0a0a0a;
-      --dark:    #111111;
-      --card:    #1a1a1a;
-      --border:  rgba(255,255,255,.08);
-      --text:    #f0f0f0;
-      --muted:   #888;
-      --accent:  #3d8ef8;
-      --grad1:   linear-gradient(135deg, #1a1a2e 0%, #16213e 40%, #0f3460 100%);
-      --grad2:   linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-      --cobalt:  #6a5acd;
-      --sky:     #87ceeb;
-      --radius:  18px;
-      --fs-xl:   clamp(2.4rem, 6vw, 5.2rem);
-      --fs-lg:   clamp(1.6rem, 3.5vw, 2.8rem);
-      --fs-md:   clamp(1.1rem, 2vw, 1.35rem);
-      --fs-sm:   0.9rem;
-    }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: 'DM Sans', system-ui, sans-serif;
-      background: var(--black);
-      color: var(--text);
-      overflow-x: hidden;
-      line-height: 1.6;
-    }
-    img { display: block; max-width: 100%; }
-    a { text-decoration: none; color: inherit; }
-    ul { list-style: none; }
-
-    /* ─────────────────────────────────────────────
-       UTILITY
-    ───────────────────────────────────────────── */
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-    .tag {
-      display: inline-flex; align-items: center; gap: 6px;
-      font-size: .75rem; font-weight: 600; letter-spacing: .12em;
-      text-transform: uppercase; color: var(--accent);
-      padding: 4px 12px; border-radius: 999px;
-      border: 1px solid rgba(61,142,248,.3);
-      background: rgba(61,142,248,.07);
-    }
-    .btn {
-      display: inline-flex; align-items: center; justify-content: center;
-      gap: 8px; font-family: inherit; font-size: 1rem; font-weight: 600;
-      border: none; border-radius: 999px; cursor: pointer;
-      transition: transform .2s, box-shadow .2s, opacity .2s;
-    }
-    .btn:hover { transform: translateY(-2px); }
-    .btn-primary {
-      background: var(--accent); color: #fff;
-      padding: 14px 36px;
-      box-shadow: 0 6px 30px rgba(61,142,248,.4);
-    }
-    .btn-primary:hover { box-shadow: 0 10px 40px rgba(61,142,248,.55); }
-    .btn-outline {
-      background: transparent; color: var(--text);
-      padding: 13px 34px; border: 1.5px solid rgba(255,255,255,.25);
-    }
-    .btn-outline:hover { border-color: rgba(255,255,255,.6); }
-    .section-label {
-      font-size: .78rem; font-weight: 700; letter-spacing: .15em;
-      text-transform: uppercase; color: var(--accent); margin-bottom: 12px;
-    }
-    .section-title {
-      font-size: var(--fs-lg); font-weight: 700; line-height: 1.2;
-      margin-bottom: 16px;
-    }
-    .section-sub {
-      font-size: var(--fs-md); color: var(--muted); max-width: 560px;
-      line-height: 1.7;
-    }
-
-    /* scroll reveal */
-    .reveal { opacity: 0; transform: translateY(40px); transition: opacity .7s ease, transform .7s ease; }
-    .reveal.visible { opacity: 1; transform: none; }
-    .reveal-left { opacity: 0; transform: translateX(-40px); transition: opacity .8s ease, transform .8s ease; }
-    .reveal-left.visible { opacity: 1; transform: none; }
-    .reveal-right { opacity: 0; transform: translateX(40px); transition: opacity .8s ease, transform .8s ease; }
-    .reveal-right.visible { opacity: 1; transform: none; }
-    .delay-1 { transition-delay: .1s; }
-    .delay-2 { transition-delay: .2s; }
-    .delay-3 { transition-delay: .3s; }
-    .delay-4 { transition-delay: .4s; }
-    .delay-5 { transition-delay: .5s; }
-
-    /* ─────────────────────────────────────────────
-       NAVBAR
-    ───────────────────────────────────────────── */
-    .navbar {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      padding: 16px 24px;
-      backdrop-filter: blur(20px) saturate(1.4);
-      -webkit-backdrop-filter: blur(20px) saturate(1.4);
-      background: rgba(10,10,10,.7);
-      border-bottom: 1px solid var(--border);
-      transition: background .3s;
-    }
-    .navbar__inner {
-      max-width: 1200px; margin: 0 auto;
-      display: flex; align-items: center; justify-content: space-between;
-    }
-    .navbar__logo {
-      font-size: 1.15rem; font-weight: 700; letter-spacing: -.02em;
-      display: flex; align-items: center; gap: 10px;
-    }
-    .navbar__logo svg { width: 28px; height: 28px; fill: var(--text); }
-    .navbar__links { display: flex; gap: 32px; }
-    .navbar__links a {
-      font-size: .9rem; font-weight: 500; color: var(--muted);
-      transition: color .2s;
-    }
-    .navbar__links a:hover { color: var(--text); }
-    .navbar__cta {
-      background: var(--accent); color: #fff;
-      padding: 10px 22px; border-radius: 999px;
-      font-size: .9rem; font-weight: 600;
-      transition: opacity .2s, transform .2s;
-    }
-    .navbar__cta:hover { opacity: .88; transform: translateY(-1px); }
-    @media (max-width: 768px) {
-      .navbar__links { display: none; }
-    }
-
-    /* ─────────────────────────────────────────────
-       HERO
-    ───────────────────────────────────────────── */
-    .hero {
-      min-height: 100vh;
-      background: var(--grad1);
-      display: flex; flex-direction: column; justify-content: center;
-      padding: 120px 24px 80px;
-      position: relative; overflow: hidden;
-    }
-    .hero::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: radial-gradient(ellipse 70% 60% at 70% 50%, rgba(61,142,248,.18), transparent);
-      pointer-events: none;
-    }
-    /* animated blur blobs */
-    .hero__blob {
-      position: absolute; border-radius: 50%; filter: blur(80px);
-      animation: float 8s ease-in-out infinite; pointer-events: none;
-    }
-    .hero__blob--1 {
-      width: 500px; height: 500px; top: -100px; right: -80px;
-      background: rgba(106,90,205,.25); animation-delay: 0s;
-    }
-    .hero__blob--2 {
-      width: 350px; height: 350px; bottom: -50px; left: 10%;
-      background: rgba(61,142,248,.18); animation-delay: 3s;
-    }
-    @keyframes float {
-      0%,100% { transform: translateY(0) scale(1); }
-      50%      { transform: translateY(-30px) scale(1.05); }
-    }
-    .hero__inner {
-      max-width: 1200px; margin: 0 auto; width: 100%;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
-      position: relative; z-index: 1;
-    }
-    .hero__eyebrow {
-      display: flex; align-items: center; gap: 10px; margin-bottom: 20px;
-    }
-    .hero__badge {
-      font-size: .72rem; font-weight: 700; letter-spacing: .1em;
-      text-transform: uppercase; background: rgba(255,255,255,.08);
-      border: 1px solid rgba(255,255,255,.12);
-      padding: 5px 12px; border-radius: 999px; color: #ddd;
-    }
-    .hero__title {
-      font-size: var(--fs-xl); font-weight: 800;
-      line-height: 1.08; letter-spacing: -.03em;
-      margin-bottom: 16px;
-    }
-    .hero__title span {
-      background: linear-gradient(135deg, #74aaff, #a78bfa);
-      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
-    }
-    .hero__sub {
-      font-size: var(--fs-md); color: rgba(255,255,255,.65);
-      line-height: 1.7; margin-bottom: 36px; max-width: 480px;
-    }
-    .hero__actions { display: flex; gap: 14px; flex-wrap: wrap; }
-    .hero__price-tag {
-      margin-top: 32px; display: flex; align-items: center; gap: 8px;
-    }
-    .hero__price {
-      font-size: 1.5rem; font-weight: 700; color: #fff;
-    }
-    .hero__price-label {
-      font-size: .82rem; color: var(--muted); line-height: 1.3;
-    }
-    .hero__image-wrap {
-      display: flex; justify-content: center; align-items: center;
-      position: relative;
-    }
-    .hero__image-wrap::before {
-      content: '';
-      position: absolute; width: 380px; height: 380px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(106,90,205,.35) 0%, transparent 70%);
-      animation: pulse 4s ease-in-out infinite;
-    }
-    @keyframes pulse {
-      0%,100%{ transform: scale(1); opacity: .8; }
-      50%     { transform: scale(1.1); opacity: 1; }
-    }
-    .hero__phone {
-      width: 100%; max-width: 380px;
-      filter: drop-shadow(0 30px 80px rgba(0,0,0,.6)) drop-shadow(0 0 60px rgba(61,142,248,.3));
-      animation: levitate 6s ease-in-out infinite;
-    }
-    @keyframes levitate {
-      0%,100%{ transform: translateY(0); }
-      50%     { transform: translateY(-18px); }
-    }
-    .hero__review {
-      position: absolute; bottom: 24px; left: 24px;
-      background: rgba(255,255,255,.07); backdrop-filter: blur(12px);
-      border: 1px solid rgba(255,255,255,.1);
-      padding: 10px 16px; border-radius: 12px;
-      font-size: .82rem; color: rgba(255,255,255,.75);
-    }
-    .hero__review strong { color: #fff; }
-    @media (max-width: 900px) {
-      .hero__inner { grid-template-columns: 1fr; text-align: center; gap: 40px; }
-      .hero__sub { margin-inline: auto; }
-      .hero__actions { justify-content: center; }
-      .hero__price-tag { justify-content: center; }
-      .hero__image-wrap { order: -1; }
-      .hero__phone { max-width: 260px; }
-    }
-
-    /* ─────────────────────────────────────────────
-       FEATURE STRIP
-    ───────────────────────────────────────────── */
-    .strip {
-      background: var(--dark);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: 0;
-    }
-    .strip__inner {
-      max-width: 1200px; margin: 0 auto;
-      display: grid; grid-template-columns: repeat(4, 1fr);
-    }
-    .strip__item {
-      padding: 28px 24px;
-      border-right: 1px solid var(--border);
-      display: flex; flex-direction: column; align-items: center;
-      text-align: center; gap: 10px;
-      transition: background .2s;
-    }
-    .strip__item:last-child { border-right: none; }
-    .strip__item:hover { background: rgba(255,255,255,.03); }
-    .strip__icon {
-      width: 44px; height: 44px; border-radius: 12px;
-      display: grid; place-items: center;
-      background: rgba(61,142,248,.12);
-    }
-    .strip__icon svg { width: 22px; height: 22px; fill: var(--accent); }
-    .strip__val { font-size: 1.25rem; font-weight: 700; }
-    .strip__key { font-size: .78rem; color: var(--muted); line-height: 1.3; }
-    @media (max-width: 600px) {
-      .strip__inner { grid-template-columns: repeat(2,1fr); }
-      .strip__item:nth-child(2) { border-right: none; }
-    }
-
-    /* ─────────────────────────────────────────────
-       DESIGN SECTION
-    ───────────────────────────────────────────── */
-    .section { padding: 100px 24px; }
-    .section--alt { background: var(--dark); }
-    .design { overflow: hidden; }
-    .design__inner {
-      max-width: 1200px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
-    }
-    .colors-row {
-      display: flex; gap: 16px; flex-wrap: wrap; margin-top: 28px;
-    }
-    .color-chip {
-      display: flex; flex-direction: column; align-items: center; gap: 8px;
-      cursor: pointer; transition: transform .2s;
-    }
-    .color-chip:hover { transform: translateY(-4px); }
-    .color-chip__circle {
-      width: 44px; height: 44px; border-radius: 50%;
-      border: 2.5px solid rgba(255,255,255,.15);
-      box-shadow: 0 4px 16px rgba(0,0,0,.4);
-      transition: border-color .2s;
-    }
-    .color-chip:hover .color-chip__circle { border-color: rgba(255,255,255,.5); }
-    .color-chip__name { font-size: .72rem; color: var(--muted); }
-    .design__specs {
-      margin-top: 36px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
-    }
-    .design__spec {
-      background: var(--card); border: 1px solid var(--border);
-      border-radius: 14px; padding: 18px 20px;
-    }
-    .design__spec-val { font-size: 1.4rem; font-weight: 700; }
-    .design__spec-key { font-size: .78rem; color: var(--muted); margin-top: 2px; }
-    .design__phone-grid {
-      display: flex; justify-content: center; gap: 20px; align-items: flex-end;
-    }
-    .design__phone-img {
-      width: 140px; border-radius: 20px;
-      filter: drop-shadow(0 16px 40px rgba(0,0,0,.5));
-      transition: transform .3s;
-    }
-    .design__phone-img:hover { transform: translateY(-8px) scale(1.04); }
-    .design__phone-img--main { width: 180px; }
-    @media (max-width: 900px) {
-      .design__inner { grid-template-columns: 1fr; }
-      .design__phone-grid { order: -1; }
-    }
-
-    /* ─────────────────────────────────────────────
-       CAMERA SECTION
-    ───────────────────────────────────────────── */
-    .camera {
-      background: var(--grad2); position: relative; overflow: hidden;
-    }
-    .camera::before {
-      content: '';
-      position: absolute; width: 600px; height: 600px;
-      border-radius: 50%; top: -200px; right: -200px;
-      background: radial-gradient(circle, rgba(61,142,248,.12) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .camera__inner {
-      max-width: 1200px; margin: 0 auto; position: relative; z-index: 1;
-    }
-    .camera__header { text-align: center; margin-bottom: 64px; }
-    .camera__header .section-sub { margin-inline: auto; }
-    .camera__grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
-      margin-bottom: 60px;
-    }
-    .camera__card {
-      background: rgba(255,255,255,.04);
-      border: 1px solid rgba(255,255,255,.08);
-      border-radius: var(--radius); padding: 32px 28px;
-      transition: background .3s, transform .3s, border-color .3s;
-    }
-    .camera__card:hover {
-      background: rgba(255,255,255,.07);
-      transform: translateY(-6px);
-      border-color: rgba(61,142,248,.3);
-    }
-    .camera__card-icon {
-      width: 52px; height: 52px; border-radius: 14px;
-      display: grid; place-items: center;
-      background: rgba(61,142,248,.15); margin-bottom: 20px;
-    }
-    .camera__card-icon svg { width: 26px; height: 26px; fill: #74aaff; }
-    .camera__card-mp { font-size: 2rem; font-weight: 800; margin-bottom: 4px; }
-    .camera__card-type { font-size: .85rem; color: var(--muted); margin-bottom: 12px; }
-    .camera__card-aper {
-      display: inline-block; font-size: .9rem; font-weight: 700; color: var(--accent);
-      background: rgba(61,142,248,.1); padding: 4px 12px; border-radius: 999px;
-    }
-    .camera__card-desc { margin-top: 12px; font-size: .85rem; color: var(--muted); line-height: 1.6; }
-    .zoom-bar {
-      background: rgba(255,255,255,.04);
-      border: 1px solid rgba(255,255,255,.08);
-      border-radius: var(--radius); padding: 40px 40px;
-      display: flex; align-items: center; justify-content: space-between; gap: 20px;
-      flex-wrap: wrap;
-    }
-    .zoom-bar__text { max-width: 380px; }
-    .zoom-steps {
-      display: flex; align-items: center; gap: 0;
-    }
-    .zoom-step {
-      text-align: center; padding: 10px 18px;
-      position: relative;
-    }
-    .zoom-step::after {
-      content: '→'; position: absolute; right: -10px; top: 50%;
-      transform: translateY(-50%); color: var(--muted); font-size: .8rem;
-    }
-    .zoom-step:last-child::after { display: none; }
-    .zoom-step__val { font-size: 1.4rem; font-weight: 800; color: var(--accent); }
-    .zoom-step__key { font-size: .72rem; color: var(--muted); }
-    @media (max-width: 900px) {
-      .camera__grid { grid-template-columns: 1fr 1fr; }
-    }
-    @media (max-width: 600px) {
-      .camera__grid { grid-template-columns: 1fr; }
-      .zoom-bar { flex-direction: column; text-align: center; padding: 28px 20px; }
-    }
-
-    /* ─────────────────────────────────────────────
-       AI SECTION
-    ───────────────────────────────────────────── */
-    .ai__inner {
-      max-width: 1200px; margin: 0 auto;
-    }
-    .ai__header {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
-      align-items: center; margin-bottom: 64px;
-    }
-    .ai__logo {
-      font-size: 3rem; font-weight: 800; letter-spacing: -.04em;
-      background: linear-gradient(135deg, #74aaff, #c084fc);
-      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
-    }
-    .ai__features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-    .ai__feat {
-      background: var(--card); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 28px 24px;
-      transition: border-color .3s, transform .3s;
-    }
-    .ai__feat:hover { border-color: rgba(168,139,250,.4); transform: translateY(-4px); }
-    .ai__feat-num {
-      width: 40px; height: 40px; border-radius: 10px;
-      display: grid; place-items: center;
-      background: rgba(168,139,250,.12);
-      font-size: .85rem; font-weight: 700; color: #c084fc;
-      margin-bottom: 16px;
-    }
-    .ai__feat h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
-    .ai__feat p { font-size: .85rem; color: var(--muted); line-height: 1.6; }
-    @media (max-width: 900px) {
-      .ai__header { grid-template-columns: 1fr; gap: 24px; }
-      .ai__features { grid-template-columns: 1fr 1fr; }
-    }
-    @media (max-width: 600px) {
-      .ai__features { grid-template-columns: 1fr; }
-    }
-
-    /* ─────────────────────────────────────────────
-       PERFORMANCE SECTION
-    ───────────────────────────────────────────── */
-    .perf { background: var(--dark); }
-    .perf__inner {
-      max-width: 1200px; margin: 0 auto;
-      display: grid; grid-template-columns: 5fr 4fr; gap: 80px; align-items: start;
-    }
-    .perf__chips {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 28px;
-    }
-    .perf__chip {
-      background: var(--card); border: 1px solid var(--border);
-      border-radius: 14px; padding: 22px 20px;
-      display: flex; align-items: flex-start; gap: 14px;
-    }
-    .perf__chip-bar {
-      flex-shrink: 0; width: 4px; height: 48px; border-radius: 4px;
-      background: var(--grad1);
-    }
-    .perf__chip-bar--blue  { background: linear-gradient(to bottom, #3d8ef8, #74aaff); }
-    .perf__chip-bar--green { background: linear-gradient(to bottom, #22c55e, #4ade80); }
-    .perf__chip-bar--purp  { background: linear-gradient(to bottom, #a855f7, #c084fc); }
-    .perf__chip-bar--orange{ background: linear-gradient(to bottom, #f97316, #fb923c); }
-    .perf__chip-pct {
-      font-size: 1.5rem; font-weight: 800; line-height: 1;
-    }
-    .perf__chip-label { font-size: .78rem; color: var(--muted); margin-top: 4px; }
-    .perf__battery {
-      background: linear-gradient(135deg, rgba(34,197,94,.08), rgba(34,197,94,.03));
-      border: 1px solid rgba(34,197,94,.15);
-      border-radius: var(--radius); padding: 36px 32px; text-align: center;
-    }
-    .perf__battery-ring {
-      width: 140px; height: 140px; margin: 0 auto 24px;
-      border-radius: 50%;
-      background: conic-gradient(#22c55e calc(75 * 1%), rgba(255,255,255,.06) 0);
-      display: grid; place-items: center; position: relative;
-    }
-    .perf__battery-ring::before {
-      content: '';
-      position: absolute; width: 108px; height: 108px; border-radius: 50%;
-      background: var(--dark);
-    }
-    .perf__battery-ring-text {
-      position: relative; z-index: 1; text-align: center;
-    }
-    .perf__battery-ring-text .val { font-size: 1.5rem; font-weight: 800; color: #22c55e; }
-    .perf__battery-ring-text .sub { font-size: .7rem; color: var(--muted); }
-    .perf__battery h3 { font-size: 1.4rem; font-weight: 700; margin-bottom: 8px; }
-    .perf__battery p { font-size: .85rem; color: var(--muted); line-height: 1.6; margin-bottom: 20px; }
-    .perf__battery-stats { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; }
-    .perf__stat { text-align: center; }
-    .perf__stat-val { font-size: 1.2rem; font-weight: 700; }
-    .perf__stat-key { font-size: .75rem; color: var(--muted); }
-    @media (max-width: 900px) {
-      .perf__inner { grid-template-columns: 1fr; gap: 40px; }
-    }
-    @media (max-width: 600px) {
-      .perf__chips { grid-template-columns: 1fr 1fr; }
-    }
-
-    /* ─────────────────────────────────────────────
-       SPECS TABLE
-    ───────────────────────────────────────────── */
-    .specs { overflow: hidden; }
-    .specs__inner {
-      max-width: 1200px; margin: 0 auto;
-    }
-    .specs__header { text-align: center; margin-bottom: 48px; }
-    .specs__table {
-      width: 100%; border-collapse: collapse;
-      background: var(--card); border-radius: var(--radius);
-      overflow: hidden;
-      border: 1px solid var(--border);
-    }
-    .specs__table tr:not(:last-child) { border-bottom: 1px solid var(--border); }
-    .specs__table tr:hover td { background: rgba(255,255,255,.02); }
-    .specs__table td {
-      padding: 16px 24px; font-size: .9rem;
-      transition: background .2s;
-    }
-    .specs__table td:first-child {
-      color: var(--muted); font-weight: 500; width: 35%;
-    }
-    .specs__table td:last-child { font-weight: 400; }
-    .specs__table thead th {
-      background: rgba(61,142,248,.1); padding: 14px 24px;
-      font-size: .78rem; font-weight: 700; letter-spacing: .1em;
-      text-transform: uppercase; color: var(--accent);
-      text-align: left;
-    }
-
-    /* ─────────────────────────────────────────────
-       PRIVACY DISPLAY
-    ───────────────────────────────────────────── */
-    .privacy {
-      background: var(--dark);
-    }
-    .privacy__inner {
-      max-width: 1200px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
-    }
-    .privacy__visual {
-      position: relative; display: flex; justify-content: center;
-    }
-    .privacy__screen {
-      width: 220px; height: 440px; background: #0d0d0d;
-      border-radius: 30px; border: 2px solid rgba(255,255,255,.12);
-      display: flex; align-items: center; justify-content: center;
-      overflow: hidden; position: relative;
-      box-shadow: 0 30px 80px rgba(0,0,0,.5), 0 0 0 1px rgba(255,255,255,.06);
-    }
-    .privacy__overlay {
-      position: absolute; inset: 0;
-      background: repeating-linear-gradient(
-        0deg, transparent, transparent 3px, rgba(0,0,0,.6) 3px, rgba(0,0,0,.6) 4px
-      );
-      opacity: 0; transition: opacity .5s;
-    }
-    .privacy__screen:hover .privacy__overlay { opacity: 1; }
-    .privacy__screen-content {
-      padding: 20px; position: relative; z-index: 1; text-align: center;
-    }
-    .privacy__screen-content p { font-size: .75rem; color: rgba(255,255,255,.6); line-height: 1.6; }
-    .privacy__tip {
-      position: absolute; bottom: -20px; right: -20px;
-      background: rgba(255,255,255,.07); backdrop-filter: blur(10px);
-      border: 1px solid rgba(255,255,255,.1);
-      padding: 10px 14px; border-radius: 10px;
-      font-size: .75rem; color: var(--muted);
-    }
-    @media (max-width: 900px) {
-      .privacy__inner { grid-template-columns: 1fr; }
-      .privacy__visual { order: -1; }
-    }
-
-    /* ─────────────────────────────────────────────
-       PRICING
-    ───────────────────────────────────────────── */
-    .pricing { background: var(--grad1); position: relative; overflow: hidden; }
-    .pricing::before {
-      content: '';
-      position: absolute; width: 600px; height: 600px; border-radius: 50%;
-      bottom: -200px; left: -100px;
-      background: radial-gradient(circle, rgba(106,90,205,.25), transparent 70%);
-      pointer-events: none;
-    }
-    .pricing__inner {
-      max-width: 1200px; margin: 0 auto; position: relative; z-index: 1;
-      text-align: center;
-    }
-    .pricing__title { font-size: var(--fs-lg); font-weight: 800; margin-bottom: 16px; }
-    .pricing__sub { color: rgba(255,255,255,.6); font-size: var(--fs-md); margin-bottom: 56px; }
-    .pricing__cards {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
-      margin-bottom: 48px;
-    }
-    .pricing__card {
-      background: rgba(255,255,255,.05);
-      border: 1.5px solid rgba(255,255,255,.1);
-      border-radius: var(--radius); padding: 32px 24px;
-      transition: background .3s, border-color .3s, transform .3s;
-      cursor: pointer;
-    }
-    .pricing__card:hover, .pricing__card--active {
-      background: rgba(255,255,255,.1);
-      border-color: rgba(61,142,248,.5);
-      transform: translateY(-6px);
-    }
-    .pricing__card--active { border-color: var(--accent); }
-    .pricing__card-storage {
-      font-size: 2rem; font-weight: 800; margin-bottom: 4px;
-    }
-    .pricing__card-ram { font-size: .85rem; color: var(--muted); margin-bottom: 16px; }
-    .pricing__card-price { font-size: 1.4rem; font-weight: 700; color: var(--accent); }
-    .pricing__card-badge {
-      display: inline-block; margin-top: 12px;
-      font-size: .72rem; font-weight: 700; text-transform: uppercase;
-      background: rgba(61,142,248,.15); color: var(--accent);
-      padding: 4px 12px; border-radius: 999px;
-    }
-    .pricing__actions { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
-    @media (max-width: 600px) {
-      .pricing__cards { grid-template-columns: 1fr; }
-    }
-
-    /* ─────────────────────────────────────────────
-       FOOTER
-    ───────────────────────────────────────────── */
-    .footer {
-      background: #070707; border-top: 1px solid var(--border);
-      padding: 60px 24px 40px;
-    }
-    .footer__inner {
-      max-width: 1200px; margin: 0 auto;
-      display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 60px;
-      margin-bottom: 48px;
-    }
-    .footer__brand-name { font-size: 1.2rem; font-weight: 700; margin-bottom: 12px; }
-    .footer__brand-desc { font-size: .85rem; color: var(--muted); line-height: 1.7; }
-    .footer__col h4 { font-size: .85rem; font-weight: 700; margin-bottom: 18px; color: #aaa; }
-    .footer__col li + li { margin-top: 10px; }
-    .footer__col a { font-size: .85rem; color: var(--muted); transition: color .2s; }
-    .footer__col a:hover { color: var(--text); }
-    .footer__bottom {
-      border-top: 1px solid var(--border); padding-top: 24px;
-      display: flex; justify-content: space-between; align-items: center;
-      gap: 16px; flex-wrap: wrap;
-    }
-    .footer__copy { font-size: .8rem; color: var(--muted); }
-    .footer__disclaimer { font-size: .75rem; color: rgba(255,255,255,.25); max-width: 640px; }
-    @media (max-width: 768px) {
-      .footer__inner { grid-template-columns: 1fr; gap: 36px; }
-      .footer__bottom { flex-direction: column; text-align: center; }
-    }
-
-    /* ─────────────────────────────────────────────
-       SCROLL-TO-TOP
-    ───────────────────────────────────────────── */
-    .scroll-top {
-      position: fixed; bottom: 28px; right: 28px; z-index: 99;
-      width: 44px; height: 44px; border-radius: 50%;
-      background: var(--accent);
-      display: grid; place-items: center;
-      box-shadow: 0 4px 20px rgba(61,142,248,.45);
-      cursor: pointer; border: none;
-      opacity: 0; pointer-events: none; transition: opacity .3s, transform .3s;
-    }
-    .scroll-top.show { opacity: 1; pointer-events: all; }
-    .scroll-top svg { width: 18px; height: 18px; fill: #fff; }
-    .scroll-top:hover { transform: translateY(-3px); }
-  </style>
+  <link rel="stylesheet" href="css/samsung-s26-ultra.css" />
 </head>
 <body>
 
@@ -854,48 +182,31 @@
       <!-- Phone color stack -->
       <div class="design__phone-grid reveal-right">
         <!-- Cobalt main -->
-        <div style="text-align:center">
-          <div style="
-            width:180px; height:340px; background: linear-gradient(160deg, #5b4c8a, #3a2f6a);
-            border-radius:40px; display:flex; flex-direction:column; align-items:center; justify-content:center;
-            box-shadow: 0 20px 60px rgba(91,76,138,.4); position:relative; overflow:hidden;
-          ">
+        <div class="phone-mockup-wrap">
+          <div class="phone-mockup">
             <!-- Camera Module -->
-            <div style="
-              position:absolute; top:22px; left:50%; transform:translateX(-50%);
-              width:72px; padding:10px; background:rgba(0,0,0,.5); border-radius:14px;
-              display:flex; flex-wrap:wrap; gap:5px; justify-content:center;
-            ">
-              <div style="width:24px;height:24px;background:#222;border-radius:50%;border:2px solid #444;"></div>
-              <div style="width:24px;height:24px;background:#222;border-radius:50%;border:2px solid #444;"></div>
-              <div style="width:24px;height:24px;background:#222;border-radius:50%;border:2px solid #444;display:flex;align-items:center;justify-content:center;"><div style="width:6px;height:6px;background:#555;border-radius:50%;"></div></div>
+            <div class="phone-mockup__camera">
+              <div class="phone-mockup__lens"></div>
+              <div class="phone-mockup__lens"></div>
+              <div class="phone-mockup__lens phone-mockup__lens--center"><div class="phone-mockup__lens-dot"></div></div>
             </div>
             <!-- Screen -->
-            <div style="
-              width:130px; height:210px; background:linear-gradient(135deg,#1a0a2e,#0d1b4b);
-              border-radius:24px; margin-top:60px;
-              border:1px solid rgba(255,255,255,.1);
-              display:flex;align-items:center;justify-content:center;
-            ">
-              <div style="text-align:center; padding:10px;">
-                <div style="font-size:.65rem; color:rgba(255,255,255,.5); margin-bottom:6px;">Galaxy AI</div>
-                <div style="font-size:.8rem; font-weight:700; color:#74aaff;">S26 Ultra</div>
-                <div style="width:40px;height:2px;background:rgba(255,255,255,.2);border-radius:1px;margin:8px auto;"></div>
-                <div style="font-size:.6rem;color:rgba(255,255,255,.4);">Snapdragon 8 Elite</div>
+            <div class="phone-mockup__screen">
+              <div class="phone-mockup__screen-inner">
+                <div class="phone-mockup__ai-label">Galaxy AI</div>
+                <div class="phone-mockup__model">S26 Ultra</div>
+                <div class="phone-mockup__bar"></div>
+                <div class="phone-mockup__chip-label">Snapdragon 8 Elite</div>
               </div>
             </div>
           </div>
-          <div style="font-size:.78rem; color:var(--muted); margin-top:12px;">Tím Cobalt</div>
+          <div class="phone-mockup__name">Tím Cobalt</div>
         </div>
 
         <!-- Sky Blue side -->
-        <div style="text-align:center; align-self:flex-end;">
-          <div style="
-            width:130px; height:250px; background: linear-gradient(160deg, #a8d8ea, #6bb8d4);
-            border-radius:32px;
-            box-shadow: 0 16px 40px rgba(135,206,235,.3); opacity:.85;
-          "></div>
-          <div style="font-size:.72rem; color:var(--muted); margin-top:10px;">Sky Blue</div>
+        <div class="phone-mockup-side">
+          <div class="phone-mockup--side"></div>
+          <div class="phone-mockup-side__name">Sky Blue</div>
         </div>
       </div>
     </div>
@@ -954,8 +265,8 @@
       <div class="zoom-bar reveal">
         <div class="zoom-bar__text">
           <div class="section-label">Space Zoom</div>
-          <h3 style="font-size:1.5rem;font-weight:700;margin:8px 0;">Tầm nhìn vượt giới hạn</h3>
-          <p style="font-size:.88rem;color:var(--muted);">
+          <h3 class="zoom-bar__title">Tầm nhìn vượt giới hạn</h3>
+          <p class="zoom-bar__desc">
             Từ góc siêu rộng 0,6x đến 100x được hỗ trợ bởi AI – mọi khoảng cách đều sắc nét.
           </p>
         </div>
@@ -979,19 +290,15 @@
         <div class="reveal-left">
           <div class="section-label">AI</div>
           <div class="ai__logo">Galaxy AI</div>
-          <p class="section-sub" style="margin-top:16px;">
+          <p class="section-sub ai__section-sub">
             Trí tuệ nhân tạo được tích hợp sâu vào mọi khía cạnh của thiết bị,
             từ chụp ảnh, chỉnh sửa đến tổ chức công việc hàng ngày.
           </p>
         </div>
-        <div class="reveal-right" style="
-          background: linear-gradient(135deg, rgba(168,139,250,.1), rgba(61,142,248,.08));
-          border: 1px solid rgba(168,139,250,.15);
-          border-radius: var(--radius); padding: 32px; text-align:center;
-        ">
-          <div style="font-size:3rem;margin-bottom:8px;">🤖</div>
-          <h3 style="font-size:1.2rem;font-weight:700;margin-bottom:8px;">Chạy trên thiết bị</h3>
-          <p style="font-size:.85rem;color:var(--muted);">AI xử lý ngay trên thiết bị, bảo vệ quyền riêng tư tuyệt đối với Personal Data Engine & Knox Vault.</p>
+        <div class="ai__device-card reveal-right">
+          <div class="ai__device-icon">🤖</div>
+          <h3 class="ai__device-title">Chạy trên thiết bị</h3>
+          <p class="ai__device-desc">AI xử lý ngay trên thiết bị, bảo vệ quyền riêng tư tuyệt đối với Personal Data Engine & Knox Vault.</p>
         </div>
       </div>
 
@@ -1042,18 +349,18 @@
           Công nghệ chống nhìn trộm chủ động đầu tiên trên thiết bị di động thế giới.
           Chỉ bạn mới thấy – người xung quanh chỉ thấy màn hình tối.
         </p>
-        <div style="margin-top: 32px; display:flex; flex-direction:column; gap:12px;">
-          <div style="display:flex;align-items:center;gap:12px;">
-            <div style="width:8px;height:8px;border-radius:50%;background:var(--accent);flex-shrink:0;"></div>
-            <span style="font-size:.9rem;color:var(--muted);">Bật/tắt thủ công hoặc cho từng ứng dụng cụ thể</span>
+        <div class="privacy__list">
+          <div class="privacy__list-item">
+            <div class="privacy__list-dot"></div>
+            <span class="privacy__list-text">Bật/tắt thủ công hoặc cho từng ứng dụng cụ thể</span>
           </div>
-          <div style="display:flex;align-items:center;gap:12px;">
-            <div style="width:8px;height:8px;border-radius:50%;background:var(--accent);flex-shrink:0;"></div>
-            <span style="font-size:.9rem;color:var(--muted);">Tự động kích hoạt khi nhập PIN, mật khẩu</span>
+          <div class="privacy__list-item">
+            <div class="privacy__list-dot"></div>
+            <span class="privacy__list-text">Tự động kích hoạt khi nhập PIN, mật khẩu</span>
           </div>
-          <div style="display:flex;align-items:center;gap:12px;">
-            <div style="width:8px;height:8px;border-radius:50%;background:var(--accent);flex-shrink:0;"></div>
-            <span style="font-size:.9rem;color:var(--muted);">Bixby điều khiển Privacy Display bằng giọng nói</span>
+          <div class="privacy__list-item">
+            <div class="privacy__list-dot"></div>
+            <span class="privacy__list-text">Bixby điều khiển Privacy Display bằng giọng nói</span>
           </div>
         </div>
       </div>
@@ -1062,7 +369,7 @@
         <div class="privacy__screen">
           <div class="privacy__overlay"></div>
           <div class="privacy__screen-content">
-            <div style="font-size:.8rem;font-weight:700;color:#74aaff;margin-bottom:10px;">🔒 Privacy Display</div>
+            <div class="privacy__screen-label">🔒 Privacy Display</div>
             <p>Di chuyển chuột vào điện thoại để xem hiệu ứng chống nhìn trộm</p>
           </div>
         </div>
@@ -1083,9 +390,9 @@
           Snapdragon® 8 Elite Gen 5 được tối ưu riêng cho Galaxy. Hiệu năng AI,
           đồ họa và CPU đều vượt trội so với thế hệ trước.
         </p>
-        <div style="margin-top:16px;padding:16px 20px;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:12px;display:inline-block;">
-          <div style="font-size:.8rem;color:var(--muted);margin-bottom:2px;">Chip</div>
-          <div style="font-weight:700;">Snapdragon® 8 Elite Gen 5 for Galaxy</div>
+        <div class="perf__chip-badge">
+          <div class="perf__chip-badge-sub">Chip</div>
+          <div class="perf__chip-badge-val">Snapdragon® 8 Elite Gen 5 for Galaxy</div>
         </div>
 
         <div class="perf__chips">
@@ -1118,7 +425,7 @@
             </div>
           </div>
         </div>
-        <p style="font-size:.76rem;color:var(--muted);margin-top:12px;">So sánh với Galaxy S25 Ultra</p>
+        <p class="perf__compare-note">So sánh với Galaxy S25 Ultra</p>
       </div>
 
       <!-- Battery Card -->
@@ -1160,7 +467,7 @@
         <div class="section-label reveal">Thông số kỹ thuật</div>
         <h2 class="section-title reveal delay-1">Thông số đầy đủ</h2>
       </div>
-      <div class="reveal delay-2" style="overflow-x:auto;">
+      <div class="specs__scroll reveal delay-2">
         <table class="specs__table">
           <thead>
             <tr>
@@ -1218,20 +525,20 @@
           <div class="pricing__card-storage">1 TB</div>
           <div class="pricing__card-ram">16 GB RAM</div>
           <div class="pricing__card-price">47.990.000 ₫</div>
-          <span class="pricing__card-badge" style="background:rgba(168,139,250,.15);color:#c084fc;">Pro</span>
+          <span class="pricing__card-badge pricing__card-badge--pro">Pro</span>
         </div>
       </div>
 
       <div class="pricing__actions reveal delay-3">
-        <a href="https://www.samsung.com/vn/smartphones/galaxy-s26-ultra/buy/" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="font-size:1.05rem;padding:16px 44px;">
+        <a href="https://www.samsung.com/vn/smartphones/galaxy-s26-ultra/buy/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn--lg">
           Mua tại Samsung.com
         </a>
-        <a href="https://www.samsung.com/vn/smartphones/galaxy-s26-ultra/" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="font-size:1.05rem;padding:15px 36px;">
+        <a href="https://www.samsung.com/vn/smartphones/galaxy-s26-ultra/" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn--lg-outline">
           Tìm hiểu thêm
         </a>
       </div>
 
-      <p style="font-size:.78rem;color:rgba(255,255,255,.3);margin-top:32px;">
+      <p class="pricing__disclaimer-note">
         Giá tham khảo. Hỗ trợ trả góp 0% đến 12 tháng. Giao hàng miễn phí tận nơi.
       </p>
     </div>

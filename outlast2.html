@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="vi">
 <head>
   <meta charset="UTF-8" />
@@ -10,667 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Special+Elite&family=Oswald:wght@300;400;500;600&display=swap" rel="stylesheet" />
-
-  <style>
-    /* ═══════════════════════════════════════════
-       RESET & BASE
-    ═══════════════════════════════════════════ */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --black:      #050000;
-      --dark:       #0d0000;
-      --card:       #110000;
-      --blood:      #8B0000;
-      --crimson:    #CC1100;
-      --red-glow:   #ff2200;
-      --rust:       #5c1a00;
-      --tan:        #c8a97a;
-      --muted:      #7a6060;
-      --text:       #e8d8c8;
-      --dim:        #b09080;
-      --border:     rgba(139,0,0,.25);
-      --border-lit: rgba(204,17,0,.5);
-      --radius:     4px;
-      --fs-hero:    clamp(3rem, 9vw, 8rem);
-      --fs-xl:      clamp(2rem, 5vw, 4rem);
-      --fs-lg:      clamp(1.4rem, 3vw, 2.2rem);
-      --fs-md:      clamp(1rem, 1.8vw, 1.2rem);
-    }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Special Elite', 'Georgia', serif;
-      background: var(--black);
-      color: var(--text);
-      overflow-x: hidden;
-      cursor: crosshair;
-    }
-    img { display: block; max-width: 100%; }
-    a { text-decoration: none; color: inherit; }
-    ul { list-style: none; }
-
-    /* ═══════════════════════════════════════════
-       NOISE / GRAIN OVERLAY
-    ═══════════════════════════════════════════ */
-    body::before {
-      content: '';
-      position: fixed; inset: 0; z-index: 9999;
-      pointer-events: none;
-      opacity: .035;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-      background-size: 200px;
-    }
-
-    /* ═══════════════════════════════════════════
-       BLOOD DRIP TOP
-    ═══════════════════════════════════════════ */
-    .blood-top {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-      height: 60px; pointer-events: none;
-      background: linear-gradient(to bottom, var(--blood), transparent);
-      opacity: .6;
-    }
-    .blood-top::after {
-      content: '';
-      position: absolute; top: 0; left: 0; right: 0;
-      height: 8px; background: var(--blood);
-    }
-
-    /* ═══════════════════════════════════════════
-       NAVBAR
-    ═══════════════════════════════════════════ */
-    .navbar {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      padding: 16px 40px;
-      display: flex; justify-content: space-between; align-items: center;
-      background: linear-gradient(to bottom, rgba(5,0,0,.95), transparent);
-      backdrop-filter: blur(2px);
-    }
-    .navbar__logo {
-      font-family: 'Cinzel', serif;
-      font-size: 1rem; font-weight: 700; letter-spacing: .3em;
-      text-transform: uppercase; color: var(--blood);
-      opacity: .85;
-    }
-    .navbar__links { display: flex; gap: 32px; }
-    .navbar__links a {
-      font-family: 'Oswald', sans-serif;
-      font-size: .8rem; letter-spacing: .18em; text-transform: uppercase;
-      color: var(--muted); transition: color .3s;
-    }
-    .navbar__links a:hover { color: var(--crimson); }
-    .navbar__cta {
-      font-family: 'Oswald', sans-serif;
-      font-size: .82rem; letter-spacing: .12em; text-transform: uppercase;
-      color: #fff; background: var(--blood);
-      padding: 9px 22px; border: 1px solid var(--crimson);
-      transition: background .2s, box-shadow .2s;
-    }
-    .navbar__cta:hover {
-      background: var(--crimson);
-      box-shadow: 0 0 20px rgba(204,17,0,.5);
-    }
-    @media (max-width: 768px) {
-      .navbar__links { display: none; }
-      .navbar { padding: 14px 20px; }
-    }
-
-    /* ═══════════════════════════════════════════
-       HERO
-    ═══════════════════════════════════════════ */
-    .hero {
-      position: relative;
-      min-height: 100vh;
-      display: flex; flex-direction: column;
-      justify-content: center; align-items: center;
-      text-align: center;
-      overflow: hidden;
-    }
-    /* Background image */
-    .hero__bg {
-      position: absolute; inset: 0;
-      background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/414700/ss_391bfd739898fd31ec7fa0c0b7658f18b7202286.1920x1080.jpg?t=1618944453');
-      background-size: cover; background-position: center;
-      filter: brightness(.35) saturate(0.4) sepia(.5);
-      transform: scale(1.08);
-      animation: hero-drift 18s ease-in-out infinite alternate;
-    }
-    @keyframes hero-drift {
-      from { transform: scale(1.08) translate(0,0); }
-      to   { transform: scale(1.12) translate(-1%, -1%); }
-    }
-    /* VHS scanlines */
-    .hero__scanlines {
-      position: absolute; inset: 0; z-index: 2; pointer-events: none;
-      background: repeating-linear-gradient(
-        to bottom,
-        transparent 0px, transparent 3px,
-        rgba(0,0,0,.08) 3px, rgba(0,0,0,.08) 4px
-      );
-    }
-    /* Vignette */
-    .hero__vignette {
-      position: absolute; inset: 0; z-index: 3; pointer-events: none;
-      background: radial-gradient(ellipse 70% 70% at 50% 50%, transparent 0%, rgba(5,0,0,.8) 100%);
-    }
-    /* Bottom fade */
-    .hero__fade {
-      position: absolute; bottom: 0; left: 0; right: 0; z-index: 4;
-      height: 280px;
-      background: linear-gradient(to top, var(--black), transparent);
-    }
-    .hero__content {
-      position: relative; z-index: 5;
-      padding: 0 24px;
-      display: flex; flex-direction: column; align-items: center; gap: 20px;
-    }
-    .hero__eyebrow {
-      font-family: 'Oswald', sans-serif;
-      font-size: .82rem; letter-spacing: .5em; text-transform: uppercase;
-      color: var(--blood); opacity: .9;
-      animation: flicker 8s ease-in-out infinite;
-    }
-    @keyframes flicker {
-      0%,95%,100% { opacity: .9; }
-      96%          { opacity: .1; }
-      97%          { opacity: .85; }
-      98%          { opacity: .2; }
-      99%          { opacity: .9; }
-    }
-    .hero__game-logo {
-      font-family: 'Cinzel', serif;
-      font-size: var(--fs-hero);
-      font-weight: 900;
-      line-height: .9;
-      letter-spacing: -.01em;
-      text-transform: uppercase;
-      color: #fff;
-      text-shadow:
-        0 0 60px rgba(204,17,0,.8),
-        0 0 120px rgba(139,0,0,.5),
-        3px 3px 0 rgba(139,0,0,.9);
-      animation: title-breathe 6s ease-in-out infinite;
-    }
-    .hero__game-logo span {
-      color: var(--crimson);
-      text-shadow: 0 0 40px rgba(255,34,0,.9), 0 0 80px rgba(204,17,0,.6);
-    }
-    @keyframes title-breathe {
-      0%,100% { text-shadow: 0 0 60px rgba(204,17,0,.8), 0 0 120px rgba(139,0,0,.5), 3px 3px 0 rgba(139,0,0,.9); }
-      50%      { text-shadow: 0 0 80px rgba(255,34,0,1), 0 0 160px rgba(139,0,0,.7), 3px 3px 0 rgba(139,0,0,.9); }
-    }
-    .hero__tagline {
-      font-family: 'Cinzel', serif;
-      font-size: clamp(.95rem, 2.2vw, 1.5rem);
-      font-weight: 400;
-      letter-spacing: .18em;
-      color: var(--tan);
-      max-width: 680px;
-      line-height: 1.6;
-      font-style: italic;
-    }
-    .hero__divider {
-      display: flex; align-items: center; gap: 16px;
-      width: 260px;
-    }
-    .hero__divider-line {
-      flex: 1; height: 1px;
-      background: linear-gradient(to right, transparent, var(--blood));
-    }
-    .hero__divider-line:last-child { background: linear-gradient(to left, transparent, var(--blood)); }
-    .hero__divider-cross {
-      font-size: 1.2rem; color: var(--blood);
-      transform: rotate(180deg);
-    }
-    /* CTA BUTTON */
-    .btn-steam {
-      display: inline-flex; align-items: center; gap: 12px;
-      font-family: 'Oswald', sans-serif;
-      font-size: 1rem; font-weight: 600; letter-spacing: .2em;
-      text-transform: uppercase;
-      color: #fff;
-      background: linear-gradient(135deg, #8B0000, #CC1100);
-      padding: 18px 48px;
-      border: 1px solid rgba(255,60,0,.4);
-      position: relative; overflow: hidden;
-      transition: box-shadow .3s;
-      cursor: pointer;
-    }
-    .btn-steam::before {
-      content: ''; position: absolute; inset: 0;
-      background: linear-gradient(135deg, rgba(255,255,255,.08), transparent);
-    }
-    .btn-steam:hover {
-      box-shadow: 0 0 40px rgba(204,17,0,.8), 0 0 80px rgba(139,0,0,.5);
-      animation: tremble .12s ease infinite;
-    }
-    @keyframes tremble {
-      0%   { transform: translate(0,0); }
-      20%  { transform: translate(-2px, 1px); }
-      40%  { transform: translate(2px, -1px); }
-      60%  { transform: translate(-1px, 2px); }
-      80%  { transform: translate(1px, -2px); }
-      100% { transform: translate(0,0); }
-    }
-    .btn-steam svg { width: 22px; height: 22px; fill: currentColor; flex-shrink: 0; }
-    .btn-steam-price {
-      display: inline-block; margin-left: 6px;
-      background: rgba(0,0,0,.35); padding: 2px 12px;
-      font-size: .85rem; letter-spacing: .1em;
-    }
-    .btn-steam-price .original {
-      text-decoration: line-through; opacity: .5; font-size: .72rem; display: block;
-    }
-    .hero__meta {
-      display: flex; gap: 24px; flex-wrap: wrap; justify-content: center;
-    }
-    .hero__badge {
-      font-family: 'Oswald', sans-serif;
-      font-size: .75rem; letter-spacing: .12em; text-transform: uppercase;
-      color: var(--muted); display: flex; align-items: center; gap: 6px;
-    }
-    .hero__badge-dot {
-      width: 6px; height: 6px; border-radius: 50%; background: var(--blood);
-      animation: pulse-dot 2s ease-in-out infinite;
-    }
-    @keyframes pulse-dot {
-      0%,100% { opacity: 1; } 50% { opacity: .3; }
-    }
-    /* scroll indicator */
-    .scroll-hint {
-      position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
-      z-index: 5; display: flex; flex-direction: column; align-items: center; gap: 8px;
-      animation: bob 2.5s ease-in-out infinite;
-    }
-    @keyframes bob { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(-8px)} }
-    .scroll-hint span {
-      font-family: 'Oswald', sans-serif; font-size: .7rem; letter-spacing: .3em;
-      text-transform: uppercase; color: var(--muted);
-    }
-    .scroll-hint svg { width:16px; height:16px; fill:var(--blood); opacity:.7; }
-
-    /* ═══════════════════════════════════════════
-       SECTION COMMON
-    ═══════════════════════════════════════════ */
-    .section { padding: 100px 24px; position: relative; }
-    .section--dark { background: var(--dark); }
-    .container { max-width: 1100px; margin: 0 auto; }
-    .section-eyebrow {
-      font-family: 'Oswald', sans-serif;
-      font-size: .75rem; letter-spacing: .4em; text-transform: uppercase;
-      color: var(--blood); margin-bottom: 12px;
-      display: flex; align-items: center; gap: 12px;
-    }
-    .section-eyebrow::before, .section-eyebrow::after {
-      content: ''; flex: 0 0 30px; height: 1px; background: var(--blood); opacity: .5;
-    }
-    .section-title {
-      font-family: 'Cinzel', serif;
-      font-size: var(--fs-xl); font-weight: 700;
-      text-align: center; color: #fff;
-      line-height: 1.15; margin-bottom: 16px;
-      text-shadow: 0 2px 20px rgba(139,0,0,.5);
-    }
-    .section-divider {
-      width: 80px; height: 2px;
-      background: linear-gradient(to right, transparent, var(--blood), transparent);
-      margin: 0 auto 60px;
-    }
-
-    /* reveal */
-    .reveal { opacity: 0; transform: translateY(30px); transition: opacity .7s, transform .7s; }
-    .reveal.visible { opacity: 1; transform: none; }
-    .reveal-left { opacity: 0; transform: translateX(-30px); transition: opacity .8s, transform .8s; }
-    .reveal-left.visible { opacity: 1; transform: none; }
-    .delay-1 { transition-delay: .1s; }
-    .delay-2 { transition-delay: .2s; }
-    .delay-3 { transition-delay: .3s; }
-    .delay-4 { transition-delay: .4s; }
-
-    /* ═══════════════════════════════════════════
-       SYNOPSIS
-    ═══════════════════════════════════════════ */
-    .synopsis { overflow: hidden; }
-    .synopsis__inner {
-      display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: center;
-    }
-    .synopsis__image-wrap { position: relative; }
-    .synopsis__image {
-      width: 100%; border: 1px solid var(--border);
-      filter: sepia(.3) contrast(1.1) brightness(.85);
-      transition: filter .4s;
-    }
-    .synopsis__image:hover { filter: sepia(.1) contrast(1.15) brightness(.9); }
-    .synopsis__image-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(135deg, rgba(139,0,0,.15) 0%, transparent 60%);
-      pointer-events: none;
-    }
-    .synopsis__cross {
-      position: absolute; top: -20px; right: -20px;
-      font-size: 4rem; color: var(--blood); opacity: .25;
-      transform: rotate(180deg);
-      font-family: 'Cinzel', serif;
-      animation: cross-sway 6s ease-in-out infinite;
-    }
-    @keyframes cross-sway {
-      0%,100% { transform: rotate(182deg); }
-      50%      { transform: rotate(178deg); }
-    }
-    .synopsis__text h2 {
-      font-family: 'Cinzel', serif;
-      font-size: var(--fs-lg); font-weight: 700;
-      color: #fff; margin-bottom: 24px; line-height: 1.2;
-    }
-    .synopsis__text h2 em { color: var(--crimson); font-style: normal; }
-    .synopsis__text p {
-      font-size: 1rem; line-height: 1.9; color: var(--dim);
-      margin-bottom: 16px;
-    }
-    .synopsis__text p strong { color: var(--tan); }
-    .synopsis__quote {
-      margin-top: 28px; padding: 20px 24px;
-      border-left: 3px solid var(--blood);
-      background: rgba(139,0,0,.06);
-      font-family: 'Cinzel', serif;
-      font-size: .95rem; font-style: italic; color: var(--tan); line-height: 1.8;
-    }
-    @media (max-width: 900px) {
-      .synopsis__inner { grid-template-columns: 1fr; gap: 40px; }
-    }
-
-    /* ═══════════════════════════════════════════
-       FEATURES
-    ═══════════════════════════════════════════ */
-    .features { background: var(--dark); }
-    .features__grid {
-      display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
-    }
-    .feat-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      padding: 32px 24px; text-align: center;
-      transition: border-color .3s, background .3s, transform .3s;
-      cursor: default;
-    }
-    .feat-card:hover {
-      border-color: var(--border-lit);
-      background: #180000;
-      transform: translateY(-6px);
-      box-shadow: 0 10px 40px rgba(139,0,0,.2), inset 0 0 40px rgba(139,0,0,.04);
-    }
-    .feat-card__icon {
-      width: 60px; height: 60px; margin: 0 auto 20px;
-      display: grid; place-items: center;
-      background: rgba(139,0,0,.12);
-      border: 1px solid var(--border);
-    }
-    .feat-card__icon svg { width: 28px; height: 28px; fill: var(--crimson); }
-    .feat-card h3 {
-      font-family: 'Cinzel', serif;
-      font-size: .9rem; font-weight: 700; text-transform: uppercase;
-      letter-spacing: .08em; color: #fff; margin-bottom: 10px;
-    }
-    .feat-card p { font-size: .82rem; line-height: 1.7; color: var(--muted); }
-    @media (max-width: 900px) { .features__grid { grid-template-columns: 1fr 1fr; } }
-    @media (max-width: 500px) { .features__grid { grid-template-columns: 1fr; } }
-
-    /* ═══════════════════════════════════════════
-       TRAILER
-    ═══════════════════════════════════════════ */
-    .trailer__frame-wrap {
-      position: relative; max-width: 900px; margin: 0 auto;
-    }
-    .trailer__corner {
-      position: absolute; width: 28px; height: 28px;
-      border-color: var(--blood); border-style: solid; z-index: 2;
-    }
-    .trailer__corner--tl { top: -8px; left: -8px; border-width: 2px 0 0 2px; }
-    .trailer__corner--tr { top: -8px; right: -8px; border-width: 2px 2px 0 0; }
-    .trailer__corner--bl { bottom: -8px; left: -8px; border-width: 0 0 2px 2px; }
-    .trailer__corner--br { bottom: -8px; right: -8px; border-width: 0 2px 2px 0; }
-    .trailer__embed {
-      width: 100%; aspect-ratio: 16/9;
-      border: 1px solid var(--border);
-      background: #000;
-    }
-    .trailer__embed iframe {
-      width: 100%; height: 100%; border: none;
-    }
-
-    /* ═══════════════════════════════════════════
-       GALLERY
-    ═══════════════════════════════════════════ */
-    .gallery { background: var(--dark); }
-    .gallery__grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      grid-auto-rows: 160px;
-      gap: 6px;
-    }
-    .gallery__item {
-      overflow: hidden; position: relative; cursor: pointer;
-    }
-    .gallery__item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
-    .gallery__item:nth-child(6) { grid-column: span 2; }
-    .gallery__img {
-      width: 100%; height: 100%; object-fit: cover;
-      filter: brightness(.75) saturate(.7) sepia(.2);
-      transition: filter .4s, transform .5s;
-    }
-    .gallery__item:hover .gallery__img {
-      filter: brightness(.9) saturate(.9) sepia(.05);
-      transform: scale(1.06);
-    }
-    .gallery__item-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(139,0,0,.4) 0%, transparent 50%);
-      opacity: 0; transition: opacity .3s;
-    }
-    .gallery__item:hover .gallery__item-overlay { opacity: 1; }
-    .gallery__zoom {
-      position: absolute; inset: 0; display: flex;
-      align-items: center; justify-content: center;
-      opacity: 0; transition: opacity .3s;
-    }
-    .gallery__item:hover .gallery__zoom { opacity: 1; }
-    .gallery__zoom svg { width: 32px; height: 32px; fill: #fff; filter: drop-shadow(0 2px 8px rgba(0,0,0,.8)); }
-    @media (max-width: 700px) {
-      .gallery__grid { grid-template-columns: 1fr 1fr; }
-      .gallery__item:nth-child(1) { grid-column: span 2; grid-row: span 1; }
-      .gallery__item:nth-child(6) { grid-column: span 2; }
-    }
-
-    /* Lightbox */
-    .lightbox {
-      position: fixed; inset: 0; z-index: 1000;
-      background: rgba(0,0,0,.97);
-      display: none; place-items: center;
-      padding: 20px;
-    }
-    .lightbox.open { display: grid; }
-    .lightbox__img {
-      max-width: 92vw; max-height: 88vh; object-fit: contain;
-      border: 1px solid var(--border);
-    }
-    .lightbox__close {
-      position: absolute; top: 20px; right: 28px;
-      font-size: 2rem; color: var(--text); cursor: pointer;
-      font-family: 'Cinzel', serif; line-height: 1;
-      background: none; border: none;
-      transition: color .2s;
-    }
-    .lightbox__close:hover { color: var(--crimson); }
-    .lightbox__prev, .lightbox__next {
-      position: absolute; top: 50%; transform: translateY(-50%);
-      background: rgba(139,0,0,.5); border: none; cursor: pointer;
-      padding: 16px 12px; color: #fff; font-size: 1.2rem;
-      transition: background .2s;
-    }
-    .lightbox__prev { left: 12px; }
-    .lightbox__next { right: 12px; }
-    .lightbox__prev:hover, .lightbox__next:hover { background: var(--blood); }
-    .lightbox__prev svg, .lightbox__next svg { width: 20px; height: 20px; fill: #fff; }
-
-    /* ═══════════════════════════════════════════
-       REVIEWS
-    ═══════════════════════════════════════════ */
-    .reviews__steam-badge {
-      display: inline-flex; align-items: center; gap: 14px;
-      padding: 16px 28px; margin: 0 auto 60px;
-      background: rgba(139,0,0,.08); border: 1px solid var(--border);
-      justify-self: center;
-    }
-    .reviews__steam-badge-score {
-      font-family: 'Cinzel', serif; font-size: 1.1rem; font-weight: 700;
-      color: #66c0f4;
-    }
-    .reviews__steam-badge-label {
-      font-family: 'Oswald', sans-serif; font-size: .8rem; letter-spacing: .1em;
-      text-transform: uppercase; color: var(--muted);
-    }
-    .reviews__steam-badge-wrap { display: flex; justify-content: center; }
-    .reviews__num {
-      font-family: 'Cinzel', serif; font-size: 2.5rem; font-weight: 700; color: #fff;
-    }
-    .reviews__grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
-    }
-    .review-card {
-      background: var(--card); border: 1px solid var(--border);
-      padding: 28px 24px; position: relative;
-      transition: border-color .3s, transform .3s;
-    }
-    .review-card:hover { border-color: var(--border-lit); transform: translateY(-4px); }
-    .review-card::before {
-      content: '"';
-      position: absolute; top: 10px; left: 18px;
-      font-family: 'Cinzel', serif; font-size: 4rem;
-      color: var(--blood); opacity: .3; line-height: 1;
-    }
-    .review-card__text {
-      font-size: .9rem; line-height: 1.8; color: var(--dim);
-      margin-bottom: 20px; font-style: italic; padding-top: 8px;
-    }
-    .review-card__source {
-      display: flex; align-items: center; justify-content: space-between;
-    }
-    .review-card__outlet {
-      font-family: 'Oswald', sans-serif;
-      font-size: .78rem; letter-spacing: .08em; text-transform: uppercase;
-      color: var(--tan);
-    }
-    .review-card__score {
-      font-family: 'Cinzel', serif; font-size: 1.1rem; font-weight: 700;
-      color: var(--crimson);
-    }
-    @media (max-width: 800px) { .reviews__grid { grid-template-columns: 1fr; } }
-
-    /* ═══════════════════════════════════════════
-       SYSTEM REQUIREMENTS
-    ═══════════════════════════════════════════ */
-    .sysreq { background: var(--dark); }
-    .sysreq__grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
-    }
-    .sysreq__col {
-      background: var(--card); border: 1px solid var(--border); padding: 36px;
-    }
-    .sysreq__col-title {
-      font-family: 'Cinzel', serif; font-size: 1rem; font-weight: 700;
-      text-transform: uppercase; letter-spacing: .15em; margin-bottom: 24px;
-      color: var(--tan); display: flex; align-items: center; gap: 10px;
-    }
-    .sysreq__col-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
-    .sysreq__row {
-      display: flex; gap: 16px; padding: 12px 0;
-      border-bottom: 1px solid rgba(139,0,0,.1);
-    }
-    .sysreq__row:last-child { border-bottom: none; }
-    .sysreq__row-label {
-      font-family: 'Oswald', sans-serif;
-      flex: 0 0 90px; font-size: .78rem; letter-spacing: .08em;
-      text-transform: uppercase; color: var(--muted); padding-top: 2px;
-    }
-    .sysreq__row-val {
-      font-size: .85rem; color: var(--dim); line-height: 1.5;
-    }
-    @media (max-width: 680px) {
-      .sysreq__grid { grid-template-columns: 1fr; }
-    }
-
-    /* ═══════════════════════════════════════════
-       FINAL CTA
-    ═══════════════════════════════════════════ */
-    .final-cta {
-      position: relative; overflow: hidden;
-      padding: 140px 24px;
-      text-align: center;
-    }
-    .final-cta__bg {
-      position: absolute; inset: 0;
-      background-image: url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/414700/ss_0b3a895b08f4a77e89cb970911c0b0fd213afa4e.1920x1080.jpg?t=1618944453');
-      background-size: cover; background-position: center;
-      filter: brightness(.2) saturate(.3);
-    }
-    .final-cta__overlay {
-      position: absolute; inset: 0;
-      background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(139,0,0,.12), rgba(5,0,0,.7));
-    }
-    .final-cta__content { position: relative; z-index: 1; }
-    .final-cta__title {
-      font-family: 'Cinzel', serif;
-      font-size: var(--fs-xl); font-weight: 900;
-      color: #fff; margin-bottom: 12px;
-      text-shadow: 0 0 60px rgba(204,17,0,.7);
-    }
-    .final-cta__sub {
-      font-family: 'Cinzel', serif;
-      font-size: 1.1rem; font-style: italic; color: var(--tan);
-      margin-bottom: 40px; letter-spacing: .06em;
-    }
-    .final-cta__discount {
-      display: inline-flex; align-items: center; gap: 12px;
-      background: rgba(139,0,0,.25); border: 1px solid var(--border-lit);
-      padding: 10px 22px; margin-bottom: 32px;
-    }
-    .final-cta__discount-tag {
-      font-family: 'Oswald', sans-serif; font-size: .85rem; letter-spacing: .1em;
-      text-transform: uppercase; color: var(--crimson);
-    }
-
-    /* ═══════════════════════════════════════════
-       FOOTER
-    ═══════════════════════════════════════════ */
-    .footer {
-      background: #020000;
-      border-top: 1px solid var(--border);
-      padding: 40px 24px;
-      text-align: center;
-    }
-    .footer__logo {
-      font-family: 'Cinzel', serif; font-size: .9rem; font-weight: 700;
-      letter-spacing: .4em; color: var(--blood); margin-bottom: 12px;
-      opacity: .7;
-    }
-    .footer__text {
-      font-size: .75rem; color: var(--muted); line-height: 1.7; max-width: 540px; margin: 0 auto;
-    }
-    .footer__links { display: flex; justify-content: center; gap: 24px; margin: 16px 0; flex-wrap: wrap; }
-    .footer__links a {
-      font-family: 'Oswald', sans-serif; font-size: .72rem; letter-spacing: .12em;
-      text-transform: uppercase; color: var(--muted); transition: color .2s;
-    }
-    .footer__links a:hover { color: var(--crimson); }
-
-    /* ═══════════════════════════════════════════
-       ATMOSPHERIC FLARE
-    ═══════════════════════════════════════════ */
-    .blood-crack {
-      position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
-      background: linear-gradient(to right, transparent 10%, var(--blood) 40%, var(--blood) 60%, transparent 90%);
-      opacity: .5;
-    }
-  </style>
+  <link rel="stylesheet" href="css/outlast2.css" />
 </head>
 <body>
 
@@ -760,7 +100,7 @@
         </div>
 
         <!-- Text right -->
-        <div class="reveal" style="transition-delay:.2s">
+        <div class="reveal delay-2">
           <p class="section-eyebrow">Cốt Truyện</p>
           <h2>Bóng Tối <em>Arizona</em> Không Bao Giờ Buông Tha</h2>
           <p>
@@ -792,7 +132,7 @@
   ══════════════════════════════════════════ -->
   <section class="section features" id="features">
     <div class="container">
-      <p class="section-eyebrow" style="justify-content:center;">Tính Năng</p>
+      <p class="section-eyebrow section-eyebrow--center">Tính Năng</p>
       <h2 class="section-title reveal">Tại Sao Outlast 2<br/>Khiến Bạn Không Ngủ Được?</h2>
       <div class="section-divider"></div>
 
@@ -839,12 +179,12 @@
   ══════════════════════════════════════════ -->
   <section class="section" id="media">
     <div class="container">
-      <p class="section-eyebrow" style="justify-content:center;">Media</p>
+      <p class="section-eyebrow section-eyebrow--center">Media</p>
       <h2 class="section-title reveal">Thư Viện Địa Ngục</h2>
       <div class="section-divider"></div>
 
       <!-- Trailer -->
-      <div class="trailer reveal" style="margin-bottom: 60px;">
+      <div class="trailer reveal trailer--mb">
         <div class="trailer__frame-wrap">
           <div class="trailer__corner trailer__corner--tl"></div>
           <div class="trailer__corner trailer__corner--tr"></div>
@@ -883,7 +223,7 @@
   ══════════════════════════════════════════ -->
   <section class="section section--dark" id="reviews">
     <div class="container">
-      <p class="section-eyebrow" style="justify-content:center;">Đánh Giá</p>
+      <p class="section-eyebrow section-eyebrow--center">Đánh Giá</p>
       <h2 class="section-title reveal">Cộng Đồng Đã Phán Quyết</h2>
       <div class="section-divider"></div>
 
@@ -893,14 +233,14 @@
             <div class="reviews__num">52,240</div>
             <div class="reviews__steam-badge-label">Lượt đánh giá tổng</div>
           </div>
-          <div style="width:1px;height:40px;background:var(--border);"></div>
+          <div class="reviews__separator"></div>
           <div>
             <div class="reviews__steam-badge-score">Very Positive</div>
             <div class="reviews__steam-badge-label">Steam · 86% tích cực</div>
           </div>
-          <div style="width:1px;height:40px;background:var(--border);"></div>
+          <div class="reviews__separator"></div>
           <div>
-            <div class="reviews__num" style="font-size:1.6rem;color:#c6a229;">75</div>
+            <div class="reviews__num reviews__num--gold">75</div>
             <div class="reviews__steam-badge-label">Metacritic Score</div>
           </div>
         </div>
@@ -931,14 +271,14 @@
       </div>
 
       <!-- Steam user reviews snippet -->
-      <div style="margin-top:48px; display:grid; grid-template-columns:1fr 1fr; gap:16px;" class="reveal delay-3">
-        <div style="background:var(--card);border:1px solid var(--border);padding:22px 24px;">
-          <p style="font-size:.82rem;color:var(--muted);font-style:italic;line-height:1.8;margin-bottom:12px;">"Trò chơi này không phải cho người yếu tim. Mỗi góc khuất đều là một cơn ác mộng. 10/10 sẽ chơi lại."</p>
-          <div style="font-family:'Oswald',sans-serif;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--tan);">Steam User · 11.2 hrs</div>
+      <div class="user-reviews reveal delay-3">
+        <div class="user-review">
+          <p class="user-review__text">"Trò chơi này không phải cho người yếu tim. Mỗi góc khuất đều là một cơn ác mộng. 10/10 sẽ chơi lại."</p>
+          <div class="user-review__source">Steam User · 11.2 hrs</div>
         </div>
-        <div style="background:var(--card);border:1px solid var(--border);padding:22px 24px;">
-          <p style="font-size:.82rem;color:var(--muted);font-style:italic;line-height:1.8;margin-bottom:12px;">"Cốt truyện phức tạp, đáng suy ngẫm. Atmosphere đỉnh của đỉnh. Outlast 2 là đỉnh cao của thể loại survival horror."</p>
-          <div style="font-family:'Oswald',sans-serif;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--tan);">Steam User · 8.7 hrs</div>
+        <div class="user-review">
+          <p class="user-review__text">"Cốt truyện phức tạp, đáng suy ngẫm. Atmosphere đỉnh của đỉnh. Outlast 2 là đỉnh cao của thể loại survival horror."</p>
+          <div class="user-review__source">Steam User · 8.7 hrs</div>
         </div>
       </div>
     </div>
@@ -950,7 +290,7 @@
   ══════════════════════════════════════════ -->
   <section class="section sysreq" id="sysreq">
     <div class="container">
-      <p class="section-eyebrow" style="justify-content:center;">Cấu Hình</p>
+      <p class="section-eyebrow section-eyebrow--center">Cấu Hình</p>
       <h2 class="section-title reveal">Yêu Cầu Hệ Thống</h2>
       <div class="section-divider"></div>
 
@@ -984,13 +324,13 @@
           </div>
           <div class="sysreq__row">
             <span class="sysreq__row-label">Mục tiêu</span>
-            <span class="sysreq__row-val" style="color:var(--blood);">720p @ 30 FPS</span>
+            <span class="sysreq__row-val sysreq__row-val--warn">720p @ 30 FPS</span>
           </div>
         </div>
 
         <!-- RECOMMENDED -->
-        <div class="sysreq__col reveal delay-2" style="border-color:var(--border-lit);">
-          <div class="sysreq__col-title" style="color:var(--crimson);">Đề Nghị</div>
+        <div class="sysreq__col sysreq__col--recommended reveal delay-2">
+          <div class="sysreq__col-title">Đề Nghị</div>
           <div class="sysreq__row">
             <span class="sysreq__row-label">OS</span>
             <span class="sysreq__row-val">Windows 10 (64-bit)</span>
@@ -1017,7 +357,7 @@
           </div>
           <div class="sysreq__row">
             <span class="sysreq__row-label">Mục tiêu</span>
-            <span class="sysreq__row-val" style="color:var(--crimson);">1080p @ 60 FPS</span>
+            <span class="sysreq__row-val sysreq__row-val--good">1080p @ 60 FPS</span>
           </div>
         </div>
       </div>
@@ -1032,9 +372,9 @@
     <div class="final-cta__overlay" aria-hidden="true"></div>
 
     <div class="final-cta__content container">
-      <div class="hero__divider" style="margin: 0 auto 32px;" aria-hidden="true">
+      <div class="hero__divider hero__divider--cta" aria-hidden="true">
         <div class="hero__divider-line"></div>
-        <div class="hero__divider-cross" style="font-size:1.8rem;color:var(--blood);">✝</div>
+        <div class="hero__divider-cross hero__divider-cross--lg">✝</div>
         <div class="hero__divider-line"></div>
       </div>
 
@@ -1043,21 +383,20 @@
 
       <div class="final-cta__discount reveal delay-2">
         <span class="final-cta__discount-tag">🔥 Khuyến mãi đặc biệt – Giảm 75%</span>
-        <span style="color:var(--muted);font-family:'Oswald',sans-serif;font-size:.8rem;letter-spacing:.1em;text-decoration:line-through;">260.000₫</span>
-        <span style="color:#fff;font-family:'Cinzel',serif;font-size:1.1rem;font-weight:700;">65.000₫</span>
+        <span class="final-cta__price-old">260.000₫</span>
+        <span class="final-cta__price-new">65.000₫</span>
       </div>
 
       <a
         href="https://store.steampowered.com/app/414700/Outlast_2/"
         target="_blank" rel="noopener noreferrer"
         class="btn-steam reveal delay-3"
-        style="display:inline-flex;"
       >
         <svg viewBox="0 0 24 24"><path d="M11.979 0C5.678 0 .511 4.86.022 11.037l6.432 2.658c.545-.371 1.203-.59 1.912-.59.063 0 .125.004.188.006l2.861-4.142V8.91c0-2.495 2.028-4.524 4.524-4.524 2.494 0 4.524 2.031 4.524 4.527s-2.03 4.525-4.524 4.525h-.105l-4.076 2.911c0 .052.004.105.004.159 0 1.875-1.515 3.396-3.39 3.396-1.635 0-3.016-1.173-3.331-2.727L.436 15.27C1.862 20.307 6.486 24 11.979 24c6.627 0 11.999-5.373 11.999-12S18.605 0 11.979 0zM7.54 18.21l-1.473-.61c.262.543.714.999 1.314 1.25 1.297.539 2.793-.076 3.332-1.375.263-.63.264-1.319.005-1.949s-.75-1.121-1.377-1.383c-.624-.26-1.29-.249-1.878-.03l1.523.63c.956.4 1.409 1.5 1.009 2.455-.397.957-1.497 1.41-2.455 1.012H7.54zm11.415-9.303c0-1.662-1.353-3.015-3.015-3.015-1.665 0-3.015 1.353-3.015 3.015 0 1.665 1.35 3.015 3.015 3.015 1.663 0 3.015-1.35 3.015-3.015zm-5.273-.005c0-1.252 1.013-2.266 2.265-2.266 1.249 0 2.266 1.014 2.266 2.266 0 1.251-1.017 2.265-2.266 2.265-1.252 0-2.265-1.014-2.265-2.265z"/></svg>
         Mua Ngay Trên Steam
       </a>
 
-      <p style="margin-top:20px;font-size:.78rem;color:rgba(255,255,255,.25);font-family:'Oswald',sans-serif;letter-spacing:.1em;">
+      <p class="final-cta__note">
         Có sẵn trên Steam · Hỗ trợ tiếng Việt · Single-player
       </p>
     </div>
