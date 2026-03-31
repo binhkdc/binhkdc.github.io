@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Test Page – UI Demo</title>
+
+  <!-- Tailwind CSS v4 CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- DaisyUI CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4/dist/full.min.css" rel="stylesheet" />
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+</head>
+<body class="min-h-screen bg-base-200 flex items-center justify-center p-6">
+
+  <!-- Card trung tâm -->
+  <div class="card w-full max-w-md bg-base-100 shadow-xl">
+    <div class="card-body gap-5">
+
+      <!-- Tiêu đề -->
+      <div class="flex items-center gap-3">
+        <i data-lucide="layout-dashboard" class="text-primary w-7 h-7"></i>
+        <h1 class="card-title text-2xl">Trang Demo UI</h1>
+      </div>
+
+      <p class="text-base-content/60 text-sm">
+        Giao diện đơn giản sử dụng Tailwind CSS v4 + daisyUI + Lucide Icons.
+      </p>
+
+      <!-- Input -->
+      <label class="form-control w-full">
+        <div class="label">
+          <span class="label-text">Tên của bạn</span>
+        </div>
+        <input
+          id="nameInput"
+          type="text"
+          placeholder="Nhập tên..."
+          class="input input-bordered w-full"
+        />
+      </label>
+
+      <!-- Select -->
+      <label class="form-control w-full">
+        <div class="label">
+          <span class="label-text">Vai trò</span>
+        </div>
+        <select id="roleSelect" class="select select-bordered w-full">
+          <option value="">-- Chọn vai trò --</option>
+          <option value="dev">Lập trình viên</option>
+          <option value="design">Thiết kế</option>
+          <option value="pm">Product Manager</option>
+        </select>
+      </label>
+
+      <!-- Toggle -->
+      <div class="form-control">
+        <label class="label cursor-pointer">
+          <span class="label-text">Nhận thông báo</span>
+          <input id="notifyToggle" type="checkbox" class="toggle toggle-primary" checked />
+        </label>
+      </div>
+
+      <!-- Divider -->
+      <div class="divider my-0"></div>
+
+      <!-- Kết quả -->
+      <div id="result" class="hidden alert alert-success shadow-sm">
+        <i data-lucide="check-circle" class="w-5 h-5"></i>
+        <span id="resultText"></span>
+      </div>
+
+      <!-- Actions -->
+      <div class="card-actions justify-between">
+        <button
+          id="resetBtn"
+          class="btn btn-ghost gap-2"
+          onclick="resetForm()"
+        >
+          <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
+          Làm mới
+        </button>
+        <button
+          id="submitBtn"
+          class="btn btn-primary gap-2"
+          onclick="submitForm()"
+        >
+          <i data-lucide="send" class="w-4 h-4"></i>
+          Xác nhận
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    // Khởi tạo Lucide icons sau khi DOM sẵn sàng
+    lucide.createIcons();
+
+    // Xử lý submit form
+    function submitForm() {
+      const name = document.getElementById('nameInput').value.trim();
+      const role = document.getElementById('roleSelect').value;
+      const notify = document.getElementById('notifyToggle').checked;
+      const result = document.getElementById('result');
+      const resultText = document.getElementById('resultText');
+
+      // Kiểm tra dữ liệu đầu vào
+      if (!name || !role) {
+        result.className = 'alert alert-warning shadow-sm';
+        resultText.textContent = 'Vui lòng nhập đầy đủ tên và vai trò!';
+        result.classList.remove('hidden');
+        lucide.createIcons();
+        return;
+      }
+
+      // Hiển thị kết quả thành công
+      const notifyText = notify ? 'có' : 'không';
+      result.className = 'alert alert-success shadow-sm';
+      resultText.textContent = `Xin chào ${name} (${role}) – Thông báo: ${notifyText}`;
+      result.classList.remove('hidden');
+      lucide.createIcons();
+    }
+
+    // Reset form về trạng thái ban đầu
+    function resetForm() {
+      document.getElementById('nameInput').value = '';
+      document.getElementById('roleSelect').value = '';
+      document.getElementById('notifyToggle').checked = true;
+      document.getElementById('result').classList.add('hidden');
+    }
+  </script>
+</body>
+</html>
