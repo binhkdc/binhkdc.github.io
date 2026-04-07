@@ -1,3 +1,5 @@
 # Ignore image folders
 image/
 assets/image/
+
+node_modules/
